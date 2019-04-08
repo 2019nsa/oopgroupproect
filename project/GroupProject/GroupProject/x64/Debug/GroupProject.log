@@ -1,0 +1,3 @@
+﻿  main.cpp
+c:\users\leoch\desktop\project\groupproject\groupproject\main.cpp(50): warning C4715: 'findUser': not all control paths return a value
+  GroupProject.vcxproj -> C:\Users\leoch\Desktop\project\GroupProject\x64\Debug\GroupProject.exe
