@@ -240,12 +240,29 @@ int main() {
 			system("pause");
 		}
 		else if (option == 2)
-			option = 2;//
+			file.readLoanRecord(rightUser);
 		else if (option == 3)
 			option = 2;//
 		else if (option == 4)
 			option = 2;//
 		else if (option == 5) {
+			cout << "thank you for using this system." << endl;
+			// Hold the command window
+			system("pause");
+			break;
+		}
+
+		if (adminOption == 1)
+			adminOption = 2;//
+		else if (adminOption == 2)
+			adminOption = 2;//
+		else if (adminOption == 3)
+			adminOption = 2;//
+		else if (adminOption == 4)
+			adminOption = 2;//
+		else if (adminOption == 4)
+			adminOption = 2;//
+		else if (adminOption == 6) {
 			cout << "thank you for using this system." << endl;
 			// Hold the command window
 			system("pause");

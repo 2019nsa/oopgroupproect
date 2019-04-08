@@ -2,6 +2,7 @@
 #include <iostream>
 #include <sstream>
 #include "FileHandler.h"
+#include "User.h"
 
 using namespace std;
 
@@ -239,21 +240,31 @@ string** FileHandler::lanternFile(int& lanternCount) {
 	return Lantern2d;
 }
 
-void FileHandler::readLoanRecord() {
+void FileHandler::readLoanRecord(string rightUser) {
 	ifstream loanRecord("newFile.txt");
 	string info;
 	if (!loanRecord) {
-		ofstream file("newFile.txt");
 		cout << "There are no any records." << endl;
 	}
 	else {
+//		string** LoanRecord = 0;
+//		LoanRecord = new string*[100];
 		while (!loanRecord.eof()) {
+			getline(loanRecord, info, '|');
+			if (info.substr(0, 6) == rightUser) {
+				cout << info;
+			}
+			else
+				getline(loanRecord, info);
 			getline(loanRecord, info);
-			cout << info;
 		}
 	}
 }
 
 void writeloanrecord() {
-
+	ifstream loanRecord("newFile.txt");
+	string info;
+	if (!loanRecord) {
+		ofstream file("newFile.txt");
+	}
 }
