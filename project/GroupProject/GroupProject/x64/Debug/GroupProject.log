@@ -1,8 +1,2 @@
-﻿  Admin.cpp
-  Equipment.cpp
-  FileHandler.cpp
-  main.cpp
-  user.cpp
-  Generating Code...
-c:\users\s2012\source\repos\2019nsa\oopgroupproect\project\groupproject\groupproject\main.cpp(56): warning C4715: 'findUser': not all control paths return a value
+﻿  FileHandler.cpp
   GroupProject.vcxproj -> C:\Users\s2012\Source\Repos\2019nsa\oopgroupproect\project\GroupProject\x64\Debug\GroupProject.exe

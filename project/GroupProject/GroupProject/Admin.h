@@ -13,5 +13,6 @@ public:
 	Admin();
 	string getUserID();
 	string getPassword();
+	int adminMenu();
 };
 #endif

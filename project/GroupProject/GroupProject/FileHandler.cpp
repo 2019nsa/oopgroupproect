@@ -14,9 +14,9 @@ string** FileHandler::userFile(int& userCount) {
 		exit(EXIT_FAILURE);
 	}
 	string info;
+	userCount = 0;
 	string** User2d = 0;
 	User2d = new string*[100];
-	userCount = 0;
 	while (!myFile.eof()) {
 		getline(myFile, info, '|');
 		if (info.substr(0, 3) == "VEN" || info.substr(0, 3) == "ROV") {
@@ -52,9 +52,9 @@ string** FileHandler::scoutFile(int& scoutCount) {
 		exit(EXIT_FAILURE);
 	}
 	string info;
+	scoutCount = 0;
 	string** Scout2d = 0;
 	Scout2d = new string*[100];
-	scoutCount = 0;
 	while (!myFile.eof()) {
 		getline(myFile, info, '|');
 		if (info.substr(0, 3) == "SCT") {
@@ -93,9 +93,9 @@ string** FileHandler::scouterFile(int& scouterCount) {
 		exit(EXIT_FAILURE);
 	}
 	string info;
-	string** Scouter2d = 0;
-	Scouter2d = new string*[3];
 	scouterCount = 0;
+	string** Scouter2d = 0;
+	Scouter2d = new string*[100];
 	while (!myFile.eof()) {
 		getline(myFile, info, '|');
 		if (info.substr(0, 3) == "SCM") {
@@ -134,9 +134,9 @@ string** FileHandler::tentFile(int& tentCount) {
 		exit(EXIT_FAILURE);
 	}
 	string info;
-	string** Tent2d = 0;
-	Tent2d = new string*[10];
 	tentCount = 0;
+	string** Tent2d = 0;
+	Tent2d = new string*[100];
 	while (!myFile.eof()) {
 		getline(myFile, info, '|');
 		if (info.substr(0, 1) == "T") {
@@ -172,9 +172,9 @@ string** FileHandler::stoveFile(int& stoveCount) {
 		exit(EXIT_FAILURE);
 	}
 	string info;
-	string** Stove2d = 0;
-	Stove2d = new string*[8];
 	stoveCount = 0;
+	string** Stove2d = 0;
+	Stove2d = new string*[100];
 	while (!myFile.eof()) {
 		getline(myFile, info, '|');
 		if (info.substr(0, 1) == "S") {
@@ -210,9 +210,9 @@ string** FileHandler::lanternFile(int& lanternCount) {
 		exit(EXIT_FAILURE);
 	}
 	string info;
-	string** Lantern2d = 0;
-	Lantern2d = new string*[6];
 	lanternCount = 0;
+	string** Lantern2d = 0;
+	Lantern2d = new string*[100];
 	while (!myFile.eof()) {
 		getline(myFile, info, '|');
 		if (info.substr(0, 1) == "L") {
@@ -237,6 +237,21 @@ string** FileHandler::lanternFile(int& lanternCount) {
 		getline(myFile, info);
 	}
 	return Lantern2d;
+}
+
+void FileHandler::readLoanRecord() {
+	ifstream loanRecord("newFile.txt");
+	string info;
+	if (!loanRecord) {
+		ofstream file("newFile.txt");
+		cout << "There are no any records." << endl;
+	}
+	else {
+		while (!loanRecord.eof()) {
+			getline(loanRecord, info);
+			cout << info;
+		}
+	}
 }
 
 void writeloanrecord() {

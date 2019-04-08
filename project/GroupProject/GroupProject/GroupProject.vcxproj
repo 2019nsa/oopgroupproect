@@ -22,6 +22,7 @@
     <ClCompile Include="Admin.cpp" />
     <ClCompile Include="Equipment.cpp" />
     <ClCompile Include="FileHandler.cpp" />
+    <ClCompile Include="loanControl.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="user.cpp" />
   </ItemGroup>
@@ -33,6 +34,7 @@
     <ClInclude Include="Admin.h" />
     <ClInclude Include="Equipment.h" />
     <ClInclude Include="FileHandler.h" />
+    <ClInclude Include="loanControl.h" />
     <ClInclude Include="user.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

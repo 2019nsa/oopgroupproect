@@ -24,6 +24,7 @@ public:
 	string getSection();
 	string getBirth();
 	string getAddress();
+	int userMenu();
 };
 
 class Scout : public User {

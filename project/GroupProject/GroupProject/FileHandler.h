@@ -15,6 +15,7 @@ public:
 	string** stoveFile(int& stoveCount);
 	string** lanternFile(int& lanternCount);
 
+	void readLoanRecord();
 	void writeloanrecord();
 };
 

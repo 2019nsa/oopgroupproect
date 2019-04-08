@@ -5,35 +5,8 @@
 #include "User.h"
 #include "Admin.h"
 #include "FileHandler.h"
-//delete all
-//pull
+
 using namespace std;
-
-int adminMenu() {
-	int option;
-	cout << "1) Inserting tabulated files containing batches of users and batches of camp equipment.\n";
-	cout << "2) Display loan records containing loan date.\n";
-	cout << "3) Display list of camp equipment.\n" ;
-	cout << "4) Update condition of equipment.\n" ;
-	cout << "5) Produce a .txt file that contains all updated data such as loan records and equipment lists.\n";
-	cout << "6) Exit.\n" ;
-	cout << "Enter the number(1 - 6): \n";
-	cin >> option;
-	return option;
-}
-
-int menu() {
-	int option = 0;
-	cout << "1) Display the available camp equipment." << endl;
-	cout << "2) Display my loan record." << endl;
-	cout << "3) Equipment loan. (For users who have not borrowed any items)" << endl;
-	cout << "4) Returning camp equipment." << endl;
-	cout << "5) Exit." << endl;
-	cout << endl;
-	cout << "Enter the number(1 - 5): ";
-	cin >> option;
-	return option;
-}
 	
 bool checkUsername(string** LoginSystem, string username, int row) {
 	bool flag = false;
@@ -110,132 +83,84 @@ int main() {
 	string** user = file.userFile(userCount);
 	User us[100];
 	for (int i = 0; i < userCount; i++) {
-		int j = 0;
-		us[i].setUserID(user[i][j]);
-		j++;
-		us[i].setName(user[i][j]);
-		j++;
-		us[i].setSection(user[i][j]);
-		j++;
-		us[i].setBirth(user[i][j]);
-		j++;
-		us[i].setAddress(user[i][j]);
+		us[i].setUserID(user[i][0]);
+		us[i].setName(user[i][1]);
+		us[i].setSection(user[i][2]);
+		us[i].setBirth(user[i][3]);
+		us[i].setAddress(user[i][4]);
 	}
 
-	int scoutCount;
+	int scoutCount = 0;
 	string** scout = file.scoutFile(scoutCount);
 	Scout st[100];
 	for (int i = 0; i < scoutCount; i++) {
-		int j = 0;
-		st[i].setUserID(scout[i][j]);
-		j++;
-		st[i].setName(scout[i][j]);
-		j++;
-		st[i].setSection(scout[i][j]);
-		j++;
-		st[i].setBirth(scout[i][j]);
-		j++;
-		st[i].setAddress(scout[i][j]);
-		j++;
-		st[i].setRank(scout[i][j]);
+		st[i].setUserID(scout[i][0]);
+		st[i].setName(scout[i][1]);
+		st[i].setSection(scout[i][2]);
+		st[i].setBirth(scout[i][3]);
+		st[i].setAddress(scout[i][4]);
+		st[i].setRank(scout[i][5]);
 	}
 
-	int scouterCount;
+	int scouterCount = 0;
 	string** scouter = file.scouterFile(scouterCount);
 	Scouter str[100];
 	for (int i = 0; i < scouterCount; i++) {
-		int j = 0;
-		str[i].setUserID(scout[i][j]);
-		j++;
-		str[i].setName(scout[i][j]);
-		j++;
-		str[i].setSection(scout[i][j]);
-		j++;
-		str[i].setBirth(scout[i][j]);
-		j++;
-		str[i].setAddress(scout[i][j]);
-		j++;
-		str[i].setRank(scout[i][j]);
+		str[i].setUserID(scout[i][0]);
+		str[i].setName(scout[i][1]);
+		str[i].setSection(scout[i][2]);
+		str[i].setBirth(scout[i][3]);
+		str[i].setAddress(scout[i][4]);
+		str[i].setRank(scout[i][5]);
 	}
 
-	int tentCount;
+	int tentCount = 0;
 	string** tent = file.tentFile(tentCount);
 	Tent te[100];
 	for (int i = 0; i < tentCount; i++) {
-		int j = 0;
-		te[i].setItemID(tent[i][j]);
-		j++;
-		te[i].setItemName(tent[i][j]);
-		j++;
-		te[i].setBrand(tent[i][j]);
-		j++;
-		te[i].setItemType(tent[i][j]);
-		j++;
-		te[i].setDateOfPurchase(tent[i][j]);
-		j++;
-		te[i].setCondition(tent[i][j]);
-		j++;
-		te[i].setStatus(tent[i][j]);
-		j++;
-		te[i].setTentSize(tent[i][j]);
-		j++;
-		te[i].setTentType(tent[i][j]);
-		j++;
-		te[i].setNumberOfDoors(tent[i][j]);
-		j++;
-		te[i].setDoubleLayer(tent[i][j]);
-		j++;
-		te[i].setColour(tent[i][j]);
+		te[i].setItemID(tent[i][0]);
+		te[i].setItemName(tent[i][1]);
+		te[i].setBrand(tent[i][2]);
+		te[i].setItemType(tent[i][3]);
+		te[i].setDateOfPurchase(tent[i][4]);
+		te[i].setCondition(tent[i][5]);
+		te[i].setStatus(tent[i][6]);
+		te[i].setTentSize(tent[i][7]);
+		te[i].setTentType(tent[i][8]);
+		te[i].setNumberOfDoors(tent[i][9]);
+		te[i].setDoubleLayer(tent[i][10]);
+		te[i].setColour(tent[i][11]);
 	}
 
-	int stoveCount;
+	int stoveCount = 0;
 	string** stove = file.stoveFile(stoveCount);
 	Stove stv[100];
 	for (int i = 0; i < stoveCount; i++) {
-		int j = 0;
-		stv[i].setItemID(stove[i][j]);
-		j++;
-		stv[i].setItemName(stove[i][j]);
-		j++;
-		stv[i].setBrand(stove[i][j]);
-		j++;
-		stv[i].setItemType(stove[i][j]);
-		j++;
-		stv[i].setDateOfPurchase(stove[i][j]);
-		j++;
-		stv[i].setCondition(stove[i][j]);
-		j++;
-		stv[i].setStatus(stove[i][j]);
-		j++;
-		stv[i].setStoveType(stove[i][j]);
-		j++;
-		stv[i].setFuelType(stove[i][j]);
+		stv[i].setItemID(stove[i][0]);
+		stv[i].setItemName(stove[i][1]);
+		stv[i].setBrand(stove[i][2]);
+		stv[i].setItemType(stove[i][3]);
+		stv[i].setDateOfPurchase(stove[i][4]);
+		stv[i].setCondition(stove[i][5]);
+		stv[i].setStatus(stove[i][6]);
+		stv[i].setStoveType(stove[i][7]);
+		stv[i].setFuelType(stove[i][8]);
 	}
-	
-	int lanternCount;
+
+	int lanternCount = 0;
 	string** lantern = file.lanternFile(lanternCount);
 	Lantern ln[100];
 	for (int i = 0; i < lanternCount; i++) {
-		int j = 0;
-		ln[i].setItemID(lantern[i][j]);
-		j++;
-		ln[i].setItemName(lantern[i][j]);
-		j++;
-		ln[i].setBrand(lantern[i][j]);
-		j++;
-		ln[i].setItemType(lantern[i][j]);
-		j++;
-		ln[i].setDateOfPurchase(lantern[i][j]);
-		j++;
-		ln[i].setCondition(lantern[i][j]);
-		j++;
-		ln[i].setStatus(lantern[i][j]);
-		j++;
-		ln[i].setLanternSize(lantern[i][j]);
-		j++;
-		ln[i].setLanternType(lantern[i][j]);
-		j++;
-		ln[i].setFuelType(lantern[i][j]);
+		ln[i].setItemID(lantern[i][0]);
+		ln[i].setItemName(lantern[i][1]);
+		ln[i].setBrand(lantern[i][2]);
+		ln[i].setItemType(lantern[i][3]);
+		ln[i].setDateOfPurchase(lantern[i][4]);
+		ln[i].setCondition(lantern[i][5]);
+		ln[i].setStatus(lantern[i][6]);
+		ln[i].setLanternSize(lantern[i][7]);
+		ln[i].setLanternType(lantern[i][8]);
+		ln[i].setFuelType(lantern[i][9]);
 	}
 
 	Admin admin;
@@ -274,13 +199,15 @@ int main() {
 	for (;;) {
 		int option = 0;
 		int adminOption = 0;
+		Admin a;
+		User u;
 		system("cls");
 		if (rightUser == "admin") {
-			adminOption = adminMenu();
+			adminOption = a.adminMenu();
 			break;
 		}
 		else
-			option = menu();
+			option = u.userMenu();
 
 		if (option == 1) {
 			system("cls");
@@ -325,6 +252,7 @@ int main() {
 			break;
 		}
 	}
+
 	// Clean up memory
 	for (int i = 0; i < userCount; i++) {
 		delete[] user[i];
