@@ -241,13 +241,21 @@ int main() {
 		}
 		else if (option == 2) {
 			system("cls");
-			cout << "Your loan record: " << endl;
-			cout << "loan date\titemID\titem name\t\treturn date" << endl;
 			file.readLoanRecord(rightUser);
 			system("pause");
 		}
-		else if (option == 3)
-			option = 2;//
+		else if (option == 3) {
+			system("cls");
+			bool flag = file.readLoanRecord(rightUser);
+			if (flag == true)
+				file.writeLoanRecord();
+			else {
+				cout << endl;
+				cout << "You have alreadly borrowed something!" << endl;
+				cout << "Return the equipment first." << endl;
+			}
+			system("pause");
+		}
 		else if (option == 4)
 			option = 2;//
 		else if (option == 5) {
