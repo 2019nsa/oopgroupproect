@@ -194,7 +194,7 @@ int main() {
 	}
 	
 	string rightUser = loginSystem(LoginSystem, row);
-	system("pause");
+
 	system("cls");
 	for (;;) {
 		int option = 0;
@@ -239,8 +239,10 @@ int main() {
 			}
 			system("pause");
 		}
-		else if (option == 2)
+		else if (option == 2) {
 			file.readLoanRecord(rightUser);
+			system("pause");
+		}
 		else if (option == 3)
 			option = 2;//
 		else if (option == 4)

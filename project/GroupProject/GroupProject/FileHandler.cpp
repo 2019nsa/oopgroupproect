@@ -240,19 +240,26 @@ string** FileHandler::lanternFile(int& lanternCount) {
 	return Lantern2d;
 }
 
-void FileHandler::readLoanRecord(string rightUser) {
-	ifstream loanRecord("newFile.txt");
+void FileHandler::readLoanRecord(string userID) {
+	ifstream loanRecord("C:\\Users\\s2012\\OneDrive\\Desktop\\People.txt");
 	string info;
 	if (!loanRecord) {
 		cout << "There are no any records." << endl;
 	}
 	else {
-//		string** LoanRecord = 0;
-//		LoanRecord = new string*[100];
 		while (!loanRecord.eof()) {
 			getline(loanRecord, info, '|');
-			if (info.substr(0, 6) == rightUser) {
-				cout << info;
+			if (info.substr(0, 6) == userID) {
+				for (int i = 0; i < 5; i++) {
+					if (i > 0 && i < 4) {
+						getline(loanRecord, info, '|');
+						cout << info << " ";
+					}
+					else if (i > 3) {
+						getline(loanRecord, info);
+						cout << info << endl;
+					}
+				}
 			}
 			else
 				getline(loanRecord, info);
