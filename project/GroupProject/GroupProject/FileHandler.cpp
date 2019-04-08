@@ -253,9 +253,10 @@ void FileHandler::readLoanRecord(string userID) {
 				for (int i = 0; i < 5; i++) {
 					if (i > 0 && i < 4) {
 						getline(loanRecord, info, '|');
-						cout << info << " ";
+						cout << info << "\t";
 					}
 					else if (i > 3) {
+						cout << "\t";
 						getline(loanRecord, info);
 						cout << info << endl;
 					}

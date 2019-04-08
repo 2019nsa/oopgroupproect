@@ -240,6 +240,9 @@ int main() {
 			system("pause");
 		}
 		else if (option == 2) {
+			system("cls");
+			cout << "Your loan record: " << endl;
+			cout << "loan date\titemID\titem name\t\treturn date" << endl;
 			file.readLoanRecord(rightUser);
 			system("pause");
 		}

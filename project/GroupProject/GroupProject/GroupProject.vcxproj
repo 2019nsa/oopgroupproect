@@ -22,9 +22,9 @@
     <ClCompile Include="Admin.cpp" />
     <ClCompile Include="Equipment.cpp" />
     <ClCompile Include="FileHandler.cpp" />
-    <ClCompile Include="loanControl.cpp" />
+    <ClCompile Include="LoanControl.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="user.cpp" />
+    <ClCompile Include="User.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="camp_equipment.txt" />
@@ -34,8 +34,8 @@
     <ClInclude Include="Admin.h" />
     <ClInclude Include="Equipment.h" />
     <ClInclude Include="FileHandler.h" />
-    <ClInclude Include="loanControl.h" />
-    <ClInclude Include="user.h" />
+    <ClInclude Include="LoanControl.h" />
+    <ClInclude Include="User.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
