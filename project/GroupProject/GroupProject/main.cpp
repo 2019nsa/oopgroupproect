@@ -5,9 +5,7 @@
 #include "User.h"
 #include "Admin.h"
 #include "FileHandler.h"
-//heLLO
-//cls project
-//changed oop
+//delete all
 using namespace std;
 
 int adminMenu() {
