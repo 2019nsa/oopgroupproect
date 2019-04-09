@@ -14,14 +14,14 @@ void LoanControl::displayNumCanBorrow(string type) {
 string* LoanControl::loanItem(int typeLimit, string** tent, int tentCount, string** stove, int stoveCount, string** lantern, int lanternCount) {
 	bool flag = true;
 	string *arr = new string[typeLimit + 1];
-	string *check = new string[typeLimit];
+	bool *check = new bool[typeLimit];
 	do {
 		cout << "What would you like to borrow? (if you just borrow 1 item, just type n for other itemID.)" << endl;
-		cout << "For example: T002 n n n n " << endl;
+		cout << "For example (you can borrow at most 2 things): T002 n " << endl;
 		cout << "Input at most " << typeLimit << " itemID to borrow:";
 		arr[typeLimit] = "n";
 		for (int i = 0; i < typeLimit; i++) {
-			check[i] = "O";
+			check[i] = true;
 		}
 		for (int i = 0; i < typeLimit; i++) {
 			cin >> arr[i];
@@ -32,7 +32,7 @@ string* LoanControl::loanItem(int typeLimit, string** tent, int tentCount, strin
 					if (arr[i] == tent[j][0]) {
 						if (tent[j][5] != "good") {
 							cout << tent[j][0] << " is not available." << endl;
-							check[i] = "X";
+							check[i] = false;
 						}
 					}
 				}
@@ -42,7 +42,7 @@ string* LoanControl::loanItem(int typeLimit, string** tent, int tentCount, strin
 					if (arr[i] == stove[j][0]) {
 						if (stove[j][5] != "good") {
 							cout << stove[j][0] << " is not available." << endl;
-							check[i] = "X";
+							check[i] = false;
 						}
 					}
 				}
@@ -52,7 +52,7 @@ string* LoanControl::loanItem(int typeLimit, string** tent, int tentCount, strin
 					if (arr[i] == lantern[j][0]) {
 						if (lantern[j][5] != "good") {
 							cout << lantern[j][0] << " is not available." << endl;
-							check[i] = "X";
+							check[i] = false;
 						}
 					}
 				}
@@ -63,13 +63,13 @@ string* LoanControl::loanItem(int typeLimit, string** tent, int tentCount, strin
 			}
 			else
 				cout << "There is no any " << arr[i] << endl;
+			
 		}
+		int count = 0;
 		for (int i = 0; i < typeLimit + 1; i++) {
 			if (arr[i].substr(0, 1) == "n") {
-				int count = 0;
 				for (int j = 0; j < typeLimit; j++) {
-					if (check[i] == "X")
-						cout << check[i] << " ";
+					if (check[j] == false);
 						count++;
 				}
 				cout << endl;
@@ -79,7 +79,7 @@ string* LoanControl::loanItem(int typeLimit, string** tent, int tentCount, strin
 			}
 		}
 		for (int i = 0; i < typeLimit; i++) {
-			if (check[i] == "X") {
+			if (check[i] == false) {
 				flag = true;
 				break;
 			}
