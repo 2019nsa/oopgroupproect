@@ -16,7 +16,7 @@ public:
 	string** lanternFile(int& lanternCount);
 
 	bool readLoanRecord(string rightUser);
-	void writeLoanRecord();
+	void writeLoanRecord(string type);
 };
 
 #endif

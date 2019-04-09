@@ -274,10 +274,13 @@ bool FileHandler::readLoanRecord(string userID) {
 	return flag;
 }
 
-void FileHandler::writeLoanRecord() {
-/*	ifstream loanRecord("newFile.txt");
+void FileHandler::writeLoanRecord(string type) {
+	ifstream loanRecord("C:\\Users\\s2012\\OneDrive\\Desktop\\People.txt");
 	string info;
 	if (!loanRecord) {
-		ofstream file("newFile.txt");
-	}*/
+		ofstream file("C:\\Users\\s2012\\OneDrive\\Desktop\\newFile.txt");
+	}
+	else {
+		//
+	}
 }

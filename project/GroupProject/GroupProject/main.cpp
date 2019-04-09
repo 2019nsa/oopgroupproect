@@ -5,6 +5,7 @@
 #include "User.h"
 #include "Admin.h"
 #include "FileHandler.h"
+#include "LoanControl.h"
 
 using namespace std;
 	
@@ -246,9 +247,49 @@ int main() {
 		}
 		else if (option == 3) {
 			system("cls");
+			int typeLimit;
 			bool flag = file.readLoanRecord(rightUser);
-			if (flag == true)
-				file.writeLoanRecord();
+			if (flag == true) {
+				system("cls");
+				string type;
+				if (rightUser.substr(0, 3) == "SCT") {
+					for (int i = 0; i < scoutCount; i++) {
+						if (rightUser == scout[i][0]) {
+							type = scout[i][5];
+							break;
+						}
+					}
+				}
+				else if (rightUser.substr(0, 3) == "VEN" || rightUser.substr(0, 3) == "ROV") {
+					for (int i = 0; i < userCount; i++) {
+						if (rightUser == user[i][0]) {
+							type = user[i][2];
+							break;
+						}
+					}
+				}
+				else if (rightUser.substr(0, 3) == "SCM") {
+					for (int i = 0; i < scouterCount; i++) {
+						if (rightUser == scouter[i][0]) {
+							type = scouter[i][2];
+							break;
+						}
+					}
+				}
+				LoanControl l;
+				l.displayNumCanBorrow(type);
+				if (type == "Member")
+					typeLimit = 1;
+				else if (type == "Patrol Leader" || type == "Assistant Patrol Leader" || type == "Venture Scout")
+					typeLimit = 3;
+				else if (type == "Rover Scout" || type == "Scouter")
+					typeLimit = 5;
+				string *arr = l.loanItem(typeLimit, tent, tentCount, stove, stoveCount, lantern, lanternCount);
+				//
+				file.writeLoanRecord(type);
+				delete[] arr;
+				arr = 0;
+			}
 			else {
 				cout << endl;
 				cout << "You have alreadly borrowed something!" << endl;
