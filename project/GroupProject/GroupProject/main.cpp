@@ -189,8 +189,8 @@ int main() {
 	}
 	for (int i = 0; i < 1; i++, row++) {
 		LoginSystem[row] = new string[3];
-		LoginSystem[row][0] = admin.getUserID();
-		LoginSystem[row][1] = admin.getPassword();
+		LoginSystem[row][0] = "admin";
+		LoginSystem[row][1] = "admin";
 		LoginSystem[row][2] = "admin";
 	}
 	
@@ -204,8 +204,7 @@ int main() {
 		User u;
 		system("cls");
 		if (rightUser == "admin") {
-			adminOption = a.adminMenu();
-			break;
+			a.adminMenu();
 		}
 		else
 			option = u.userMenu();
@@ -308,22 +307,6 @@ int main() {
 			break;
 		}
 
-		if (adminOption == 1)
-			adminOption = 2;//
-		else if (adminOption == 2)
-			adminOption = 2;//
-		else if (adminOption == 3)
-			adminOption = 2;//
-		else if (adminOption == 4)
-			adminOption = 2;//
-		else if (adminOption == 4)
-			adminOption = 2;//
-		else if (adminOption == 6) {
-			cout << "thank you for using this system." << endl;
-			// Hold the command window
-			system("pause");
-			break;
-		}
 	}
 
 	// Clean up memory
