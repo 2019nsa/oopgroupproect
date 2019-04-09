@@ -195,7 +195,7 @@ int main() {
 	}
 	
 	string rightUser = loginSystem(LoginSystem, row);
-
+	system("pause");
 	system("cls");
 	for (;;) {
 		int option = 0;
@@ -284,9 +284,10 @@ int main() {
 					typeLimit = 3;
 				else if (type == "Rover Scout" || type == "Scouter")
 					typeLimit = 5;
-				string *arr = l.loanItem(typeLimit, tent, tentCount, stove, stoveCount, lantern, lanternCount);
-				//
-				file.writeLoanRecord(type);
+				int noOfBorrow;
+				string *arr = l.loanItem(typeLimit, tent, tentCount, stove, stoveCount, lantern, lanternCount, noOfBorrow);
+				int borrowCount;
+				file.writeLoanRecord(arr, borrowCount, noOfBorrow, rightUser, tent, tentCount, stove, stoveCount, lantern, lanternCount);
 				delete[] arr;
 				arr = 0;
 			}

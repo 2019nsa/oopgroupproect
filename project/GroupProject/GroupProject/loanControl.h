@@ -9,7 +9,7 @@ using namespace std;
 class LoanControl {
 public:
 	void displayNumCanBorrow(string type);
-	string* loanItem(int typeLimit, string** tent, int tentCount, string** stove, int stoveCount, string** lantern, int lanternCount);
+	string* loanItem(int typeLimit, string** tent, int tentCount, string** stove, int stoveCount, string** lantern, int lanternCount, int& noOFBorrow);
 };
 
 #endif

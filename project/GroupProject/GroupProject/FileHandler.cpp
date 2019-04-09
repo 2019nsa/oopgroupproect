@@ -274,13 +274,70 @@ bool FileHandler::readLoanRecord(string userID) {
 	return flag;
 }
 
-void FileHandler::writeLoanRecord(string type) {
+void FileHandler::writeLoanRecord(string* arr, int& borrowCount, int noOfBorrow, string rightUser, string** tent, int tentCount, string** stove, int stoveCount, string** lantern, int lanternCount) {
 	ifstream loanRecord("C:\\Users\\s2012\\OneDrive\\Desktop\\People.txt");
 	string info;
 	if (!loanRecord) {
-		ofstream file("C:\\Users\\s2012\\OneDrive\\Desktop\\newFile.txt");
+		ofstream file("C:\\Users\\s2012\\OneDrive\\Desktop\\People.txt");
 	}
 	else {
-		//
+		string info;
+		borrowCount = 0;
+		string** borrow2d = 0;
+		borrow2d = new string*[100];
+		while (!loanRecord.eof()) {
+			getline(loanRecord, info, '|');
+			borrow2d[borrowCount] = new string[5];
+			for (int j = 0; j < 5; j++) {
+				if (j == 0)
+					borrow2d[borrowCount][j] = info;
+				else if (j > 0 && j < 4) {
+					getline(loanRecord, info, '|');
+					borrow2d[borrowCount][j] = info;
+				}
+				else if (j > 3) {
+					getline(loanRecord, info);
+					borrow2d[borrowCount][j] = info;
+				}
+			}
+			borrowCount++;
+			getline(loanRecord, info);
+		}
+		for (int i = 0; i < noOfBorrow; i++) {
+			borrow2d[borrowCount] = new string[5];
+			borrow2d[borrowCount][0] = rightUser;
+			borrow2d[borrowCount][1] = rightUser;//Current Date
+			borrow2d[borrowCount][2] = arr[i];
+			for (int j = 0; j < noOfBorrow; j++) {
+
+				cout << arr[j].substr(0, 1) << endl;
+				if (arr[j].substr(0, 1) == "T") {
+					for (int k = 0; k < tentCount; k++) {
+						if (arr[j] == tent[k][0])
+							borrow2d[borrowCount][3] = tent[k][1];
+					}
+				}
+				else if (arr[j].substr(0, 1) == "S") {
+					for (int k = 0; k < stoveCount; k++) {
+						if (arr[j] == stove[k][0])
+							borrow2d[borrowCount][3] = stove[k][1];
+					}
+				}
+				else if (arr[j].substr(0, 1) == "L") {
+					for (int k = 0; k < lanternCount; k++) {
+						if (arr[j] == lantern[k][0])
+							borrow2d[borrowCount][3] = lantern[k][1];
+					}
+				}
+			}
+			borrow2d[borrowCount][4] = rightUser;//return Date
+			borrowCount++;
+		}
+		for (int i = 0; i < borrowCount; i++) {
+			for (int j = 0; j < 5; j++) {
+				cout << borrow2d[i][j] << " ";
+			}
+			cout << endl;
+		}
 	}
 }
