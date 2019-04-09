@@ -288,6 +288,7 @@ int main() {
 				string *arr = l.loanItem(typeLimit, tent, tentCount, stove, stoveCount, lantern, lanternCount, noOfBorrow);
 				int borrowCount;
 				file.writeLoanRecord(arr, borrowCount, noOfBorrow, rightUser, tent, tentCount, stove, stoveCount, lantern, lanternCount);
+				
 				delete[] arr;
 				arr = 0;
 			}

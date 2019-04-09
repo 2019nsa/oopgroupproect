@@ -1,6 +1,7 @@
 #include <fstream>
 #include <iostream>
 #include <sstream>
+#include <ctime>
 #include "FileHandler.h"
 #include "User.h"
 
@@ -281,6 +282,52 @@ void FileHandler::writeLoanRecord(string* arr, int& borrowCount, int noOfBorrow,
 		ofstream file("C:\\Users\\s2012\\OneDrive\\Desktop\\People.txt");
 	}
 	else {
+		int dayOfToday, monthOfToday, yearOfToday, x, dayOfReturn, monthOfReturn, yearOfReturn;
+
+		struct tm t;
+		time_t now;
+		time(&now);
+		localtime_s(&t, &now);
+		dayOfToday = t.tm_mday;
+		monthOfToday = t.tm_mon + 1;
+		yearOfToday = t.tm_year + 1900;
+
+		int MaxDays[12] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+		//leap year
+		if ((yearOfToday % 4 == 0 && yearOfToday % 100 != 0) || (yearOfToday % 4 == 0 && yearOfToday % 100 == 0 && yearOfToday % 400 == 0))
+			MaxDays[1] = 29;
+		x = monthOfToday - 1;
+
+		dayOfReturn = dayOfToday + 14, monthOfReturn = monthOfToday, yearOfReturn = yearOfToday; //Usually
+
+		if (dayOfToday + 14 > MaxDays[x]) {
+			dayOfReturn = dayOfToday + 14 - MaxDays[x], monthOfReturn = monthOfToday + 1;
+			if (monthOfToday == 12) {
+				yearOfReturn = yearOfToday + 1;
+				monthOfReturn = 1;
+			}
+		}
+		string date, day, month;
+		string newDate, newDay, newMonth;
+		if (dayOfToday > 0 && dayOfToday < 10)
+			day = "0" + to_string(dayOfToday);
+		else
+			day = to_string(dayOfToday);
+		if (monthOfToday > 0 && monthOfToday < 10)
+			month = "0" + to_string(monthOfToday);
+		else
+			month = to_string(monthOfToday);
+		if (dayOfReturn > 0 && dayOfReturn < 10)
+			newDay = "0" + to_string(dayOfReturn);
+		else
+			newDay = to_string(dayOfReturn);
+		if (monthOfReturn > 0 && monthOfReturn < 10)
+			newMonth = "0" + to_string(monthOfReturn);
+		else
+			newMonth = to_string(monthOfReturn);
+		date = day + "/" + month + "/" + to_string(yearOfToday);
+		newDate = newDay + "/" + newMonth + "/" + to_string(yearOfReturn);
+
 		string info;
 		borrowCount = 0;
 		string** borrow2d = 0;
@@ -306,31 +353,27 @@ void FileHandler::writeLoanRecord(string* arr, int& borrowCount, int noOfBorrow,
 		for (int i = 0; i < noOfBorrow; i++) {
 			borrow2d[borrowCount] = new string[5];
 			borrow2d[borrowCount][0] = rightUser;
-			borrow2d[borrowCount][1] = rightUser;//Current Date
+			borrow2d[borrowCount][1] = date;//Current Date
 			borrow2d[borrowCount][2] = arr[i];
-			for (int j = 0; j < noOfBorrow; j++) {
-
-				cout << arr[j].substr(0, 1) << endl;
-				if (arr[j].substr(0, 1) == "T") {
-					for (int k = 0; k < tentCount; k++) {
-						if (arr[j] == tent[k][0])
-							borrow2d[borrowCount][3] = tent[k][1];
-					}
-				}
-				else if (arr[j].substr(0, 1) == "S") {
-					for (int k = 0; k < stoveCount; k++) {
-						if (arr[j] == stove[k][0])
-							borrow2d[borrowCount][3] = stove[k][1];
-					}
-				}
-				else if (arr[j].substr(0, 1) == "L") {
-					for (int k = 0; k < lanternCount; k++) {
-						if (arr[j] == lantern[k][0])
-							borrow2d[borrowCount][3] = lantern[k][1];
-					}
+			if (arr[i].substr(0, 1) == "T") {
+				for (int k = 0; k < tentCount; k++) {
+					if (arr[i] == tent[k][0])
+						borrow2d[borrowCount][3] = tent[k][1];
 				}
 			}
-			borrow2d[borrowCount][4] = rightUser;//return Date
+			else if (arr[i].substr(0, 1) == "S") {
+				for (int k = 0; k < stoveCount; k++) {
+					if (arr[i] == stove[k][0])
+						borrow2d[borrowCount][3] = stove[k][1];
+				}
+			}
+			else if (arr[i].substr(0, 1) == "L") {
+				for (int k = 0; k < lanternCount; k++) {
+					if (arr[i] == lantern[k][0])
+						borrow2d[borrowCount][3] = lantern[k][1];
+				}
+			}
+			borrow2d[borrowCount][4] = newDate;//return Date
 			borrowCount++;
 		}
 		for (int i = 0; i < borrowCount; i++) {
@@ -339,5 +382,8 @@ void FileHandler::writeLoanRecord(string* arr, int& borrowCount, int noOfBorrow,
 			}
 			cout << endl;
 		}
+
+
+
 	}
 }
