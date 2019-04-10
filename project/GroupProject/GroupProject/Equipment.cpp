@@ -102,16 +102,16 @@ string Tent::getColour() {
 }
 
 string** Tent::getTent() {
-	setAllTent();
+	setAll();
 	return tent;
 }
 
 int Tent::getTentCount() {
-	setAllTent();
+	setAll();
 	return tentCount;
 }
 
-void Tent::setAllTent() {
+void Tent::setAll() {
 	int tentCount;
 	FileHandler f;
 	string** tent = f.tentFile(tentCount);
@@ -132,6 +132,14 @@ void Tent::setAllTent() {
 	}
 	setTent(tent);
 	setTentCount(tentCount);
+}
+
+void Tent::deleteAll() {
+	for (int i = 0; i < tentCount; i++) {
+		delete[] tent[i];
+	}
+	delete[] tent;
+	tent = 0;
 }
 
 //Stove
@@ -158,14 +166,14 @@ string Stove::getFuelType() {
 	return fuelType;
 }
 string** Stove::getStove() {
-	setAllStove();
+	setAll();
 	return stove;
 }
 int Stove::getStoveCount() {
-	setAllStove();
+	setAll();
 	return stoveCount;
 }
-void Stove::setAllStove() {
+void Stove::setAll() {
 	int stoveCount;
 	FileHandler f;
 	string** stove = f.stoveFile(stoveCount);
@@ -183,6 +191,14 @@ void Stove::setAllStove() {
 	}
 	setStove(stove);
 	setStoveCount(stoveCount);
+}
+
+void Stove::deleteAll() {
+	for (int i = 0; i < stoveCount; i++) {
+		delete[] stove[i];
+	}
+	delete[] stove;
+	stove = 0;
 }
 
 //Lantern
@@ -214,14 +230,14 @@ string Lantern::getFuelType() {
 	return fuelType;
 }
 string** Lantern::getLantern() {
-	setAllLantern();
+	setAll();
 	return lantern;
 }
 int Lantern::getLanternCount() {
-	setAllLantern();
+	setAll();
 	return lanternCount;
 }
-void Lantern::setAllLantern() {
+void Lantern::setAll() {
 	int lanternCount;
 	FileHandler f;
 	string** lantern = f.lanternFile(lanternCount);
@@ -240,4 +256,12 @@ void Lantern::setAllLantern() {
 	}
 	setLantern(lantern);
 	setLanternCount(lanternCount);
+}
+
+void Lantern::deleteAll() {
+	for (int i = 0; i < lanternCount; i++) {
+		delete[] lantern[i];
+	}
+	delete[] lantern;
+	lantern = 0;
 }

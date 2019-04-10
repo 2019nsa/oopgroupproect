@@ -4,6 +4,7 @@
 #include <fstream>
 #include <string>
 #include <iostream>
+#include <ctime>
 
 using namespace std;
 
@@ -16,6 +17,9 @@ public:
 	string** tentFile(int& tentCount);
 	string** stoveFile(int& stoveCount);
 	string** lanternFile(int& lanternCount);
+
+	bool readLoanRecord(string rightUser);
+	void writeLoanRecord(string* arr, int& borrowCount, int noOfBorrow, string rightUser);
 };
 
 #endif

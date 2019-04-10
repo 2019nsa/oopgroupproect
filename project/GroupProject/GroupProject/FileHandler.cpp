@@ -1,4 +1,5 @@
 #include "FileHandler.h"
+#include "Equipment.h"
 
 string** FileHandler::scoutFile(int& scoutCount) {
 	ifstream myFile("user.txt");
@@ -233,8 +234,8 @@ string** FileHandler::lanternFile(int& lanternCount) {
 	}
 	return Lantern2d;
 }
-/*
-bool FileHandler::readLoanRecord(string userID) {
+
+bool FileHandler::readLoanRecord(string rightUser) {
 	ifstream loanRecord("C:\\Users\\s2012\\OneDrive\\Desktop\\People.txt");
 	string info;
 	bool flag = true;
@@ -246,7 +247,7 @@ bool FileHandler::readLoanRecord(string userID) {
 		cout << "loan date\titemID\titem name\t\treturn date" << endl;
 		while (!loanRecord.eof()) {
 			getline(loanRecord, info, '|');
-			if (info.substr(0, 6) == userID) {
+			if (info.substr(0, 6) == rightUser) {
 				for (int i = 0; i < 5; i++) {
 					if (i > 0 && i < 4) {
 						getline(loanRecord, info, '|');
@@ -268,7 +269,7 @@ bool FileHandler::readLoanRecord(string userID) {
 	return flag;
 }
 
-void FileHandler::writeLoanRecord(string* arr, int& borrowCount, int noOfBorrow, string rightUser, string** tent, int tentCount, string** stove, int stoveCount, string** lantern, int lanternCount) {
+void FileHandler::writeLoanRecord(string* arr, int& borrowCount, int noOfBorrow, string rightUser) {
 	ifstream loanRecord("C:\\Users\\s2012\\OneDrive\\Desktop\\People.txt");
 	string info;
 	if (!loanRecord) {
@@ -323,6 +324,9 @@ void FileHandler::writeLoanRecord(string* arr, int& borrowCount, int noOfBorrow,
 
 		string info;
 		borrowCount = 0;
+		Tent ten;
+		Stove sto;
+		Lantern lan;
 		string** borrow2d = 0;
 		borrow2d = new string*[100];
 		while (!loanRecord.eof()) {
@@ -349,21 +353,21 @@ void FileHandler::writeLoanRecord(string* arr, int& borrowCount, int noOfBorrow,
 			borrow2d[borrowCount][1] = date;//Current Date
 			borrow2d[borrowCount][2] = arr[i];
 			if (arr[i].substr(0, 1) == "T") {
-				for (int k = 0; k < tentCount; k++) {
-					if (arr[i] == tent[k][0])
-						borrow2d[borrowCount][3] = tent[k][1];
+				for (int k = 0; k < ten.getTentCount(); k++) {
+					if (arr[i] == ten.getTent()[k][0])
+						borrow2d[borrowCount][3] = ten.getTent()[k][1];
 				}
 			}
 			else if (arr[i].substr(0, 1) == "S") {
-				for (int k = 0; k < stoveCount; k++) {
-					if (arr[i] == stove[k][0])
-						borrow2d[borrowCount][3] = stove[k][1];
+				for (int k = 0; k < sto.getStoveCount(); k++) {
+					if (arr[i] == sto.getStove()[k][0])
+						borrow2d[borrowCount][3] = sto.getStove()[k][1];
 				}
 			}
 			else if (arr[i].substr(0, 1) == "L") {
-				for (int k = 0; k < lanternCount; k++) {
-					if (arr[i] == lantern[k][0])
-						borrow2d[borrowCount][3] = lantern[k][1];
+				for (int k = 0; k < lan.getLanternCount(); k++) {
+					if (arr[i] == lan.getLantern()[k][0])
+						borrow2d[borrowCount][3] = lan.getLantern()[k][1];
 				}
 			}
 			borrow2d[borrowCount][4] = newDate;//return Date
@@ -380,4 +384,3 @@ void FileHandler::writeLoanRecord(string* arr, int& borrowCount, int noOfBorrow,
 
 	}
 }
-*/

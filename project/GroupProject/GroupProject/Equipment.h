@@ -30,6 +30,8 @@ public:
 	string getDateOfPurchase();
 	string getCondition();
 	string getStatus();
+	virtual void setAll() = 0;
+	virtual void deleteAll() = 0;
 };
 
 //Tent
@@ -57,7 +59,8 @@ public:
 	string getColour();
 	string** getTent();
 	int getTentCount();
-	void setAllTent();
+	void setAll();
+	void deleteAll();
 };
 
 
@@ -77,7 +80,8 @@ public:
 	string getFuelType();
 	string** getStove();
 	int getStoveCount();
-	void setAllStove();
+	void setAll();
+	void deleteAll();
 };
 
 
@@ -100,6 +104,7 @@ public:
 	string getFuelType();
 	string** getLantern();
 	int getLanternCount();
-	void setAllLantern();
+	void setAll();
+	void deleteAll();
 };
 #endif

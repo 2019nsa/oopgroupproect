@@ -8,7 +8,7 @@ using namespace std;
 
 class Admin {
 public:
-	int adminMenu();
+	int adminMenu(string rightUser);
 };
 
 #endif

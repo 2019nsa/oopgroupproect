@@ -24,6 +24,8 @@ public:
 	string getSection();
 	string getBirth();
 	string getAddress();
+	virtual void setAll() = 0;
+	virtual void deleteAll() = 0;
 };
 
 class Scout : public User {
@@ -36,6 +38,8 @@ public:
 	string** getScout();
 	int getScoutCount();
 	void setAll();
+	void scoutMenu(string rightUser);
+	void deleteAll();
 };
 
 class Scouts : public User {
@@ -51,6 +55,8 @@ public:
 	string** getScouts();
 	int getScoutsCount();
 	void setAll();
+	void scoutsMenu(string rightUser);
+	void deleteAll();
 };
 
 class Scouters : public User {
@@ -66,6 +72,8 @@ public:
 	string** getScouters();
 	int getScoutersCount();
 	void setAll();
+	void scoutersMenu(string rightUser);
+	void deleteAll();
 };
 
 #endif

@@ -81,6 +81,9 @@ int main() {
 	Scout sct;
 	Scouts scts;
 	Scouters sctrs;
+	Tent ten;
+	Stove sto;
+	Lantern lan;
 	string** LoginSystem = 0;
 	LoginSystem = new string*[300];
 	int row = 0;
@@ -110,12 +113,29 @@ int main() {
 	}
 
 	string rightUser = loginSystem(LoginSystem, row);
+	system("pause");
+	system("cls");
 
+	if (rightUser == "admin")
+		admin.adminMenu(rightUser);
+	else if (rightUser.substr(0, 3) == "VEN" || rightUser.substr(0, 3) == "ROV")
+		sct.scoutMenu(rightUser);
+	else if (rightUser.substr(0, 3) == "SCT")
+		scts.scoutsMenu(rightUser);
+	else if (rightUser.substr(0, 3) == "SCM")
+		sctrs.scoutersMenu(rightUser);
+
+	// Release the memory
+	sct.deleteAll();
+	scts.deleteAll();
+	sctrs.deleteAll();
+	ten.deleteAll();
+	sto.deleteAll();
+	lan.deleteAll();
 	for (int i = 0; i < row; i++) {
 		delete[] LoginSystem[i];
 	}
 	delete[] LoginSystem;
 	LoginSystem = 0;
-	system("pause");
 	return 0;
 }

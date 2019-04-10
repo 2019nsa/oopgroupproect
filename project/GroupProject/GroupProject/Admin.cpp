@@ -2,7 +2,7 @@
 
 using namespace std;
 
-int Admin::adminMenu() {
+int Admin::adminMenu(string rightUser) {
 	int option = 0;
 	cout << "1) Inserting tabulated files containing batches of users and batches of camp equipment.\n";
 	cout << "2) Display loan records containing loan date.\n";
