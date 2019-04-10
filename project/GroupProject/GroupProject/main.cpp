@@ -110,6 +110,12 @@ int main() {
 	}
 
 	string rightUser = loginSystem(LoginSystem, row);
+
+	for (int i = 0; i < row; i++) {
+		delete[] LoginSystem[i];
+	}
+	delete[] LoginSystem;
+	LoginSystem = 0;
 	system("pause");
 	return 0;
 }
