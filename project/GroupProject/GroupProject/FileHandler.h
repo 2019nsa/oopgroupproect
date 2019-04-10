@@ -12,6 +12,10 @@ public:
 	string** scoutFile(int& scoutCount);
 	string** scoutsFile(int& scoutsCount);
 	string** scoutersFile(int& scoutersCount);
+
+	string** tentFile(int& tentCount);
+	string** stoveFile(int& stoveCount);
+	string** lanternFile(int& lanternCount);
 };
 
 #endif
