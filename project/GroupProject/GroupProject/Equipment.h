@@ -34,6 +34,53 @@ public:
 	virtual void deleteAll() = 0;
 };
 
+//Stove
+class Stove : public Equipment {
+private:
+	string stoveType;
+	string fuelType;
+	string** stove;
+	int stoveCount;
+	bool flag;
+public:
+	Stove();
+	void setStoveType(string stoveType);
+	void setFuelType(string fuelType);
+	void setStove(string** stove);
+	void setStoveCount(int stoveCount);
+	string getStoveType();
+	string getFuelType();
+	string** getStove();
+	int getStoveCount();
+	void setAll();
+	void deleteAll();
+};
+
+//Lantern
+class Lantern : public Equipment {
+private:
+	string lanternSize;
+	string lanternType;
+	string fuelType;
+	string** lantern;
+	int lanternCount;
+	bool flag;
+public:
+	Lantern();
+	void setLanternSize(string lanternSize);
+	void setLanternType(string lanternType);
+	void setFuelType(string fuelType);
+	void setLantern(string** lantern);
+	void setLanternCount(int lanternCount);
+	string getLanternSize();
+	string getLanternType();
+	string getFuelType();
+	string** getLantern();
+	int getLanternCount();
+	void setAll();
+	void deleteAll();
+};
+
 //Tent
 class Tent : public Equipment {
 private:
@@ -65,52 +112,4 @@ public:
 	void deleteAll();
 };
 
-
-//Stove
-class Stove : public Equipment {
-private:
-	string stoveType;
-	string fuelType;
-	string** stove;
-	int stoveCount;
-	bool flag;
-public:
-	Stove();
-	void setStoveType(string stoveType);
-	void setFuelType(string fuelType);
-	void setStove(string** stove);
-	void setStoveCount(int stoveCount);
-	string getStoveType();
-	string getFuelType();
-	string** getStove();
-	int getStoveCount();
-	void setAll();
-	void deleteAll();
-};
-
-
-//Lantern
-class Lantern : public Equipment {
-private:
-	string lanternSize;
-	string lanternType;
-	string fuelType;
-	string** lantern;
-	int lanternCount;
-	bool flag;
-public:
-	Lantern();
-	void setLanternSize(string lanternSize);
-	void setLanternType(string lanternType);
-	void setFuelType(string fuelType);
-	void setLantern(string** lantern);
-	void setLanternCount(int lanternCount);
-	string getLanternSize();
-	string getLanternType();
-	string getFuelType();
-	string** getLantern();
-	int getLanternCount();
-	void setAll();
-	void deleteAll();
-};
 #endif

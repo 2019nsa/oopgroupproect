@@ -117,7 +117,7 @@ int main() {
 	system("cls");
 
 	if (rightUser == "admin")
-		admin.adminMenu(rightUser);
+		admin.adminMenu();
 	else if (rightUser.substr(0, 3) == "VEN" || rightUser.substr(0, 3) == "ROV")
 		sct.scoutMenu(rightUser);
 	else if (rightUser.substr(0, 3) == "SCT")

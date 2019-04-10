@@ -461,9 +461,7 @@ void Scouters::scoutersMenu(string rightUser) {
 				int noOfBorrow;
 				LoanControl l;
 				string *arr = l.loanItem(typeLimit, noOfBorrow);
-				cout << "aaaaaaaaaaaaagf" << endl;
 				int borrowCount;
-				cout << "aaaaaaaaaaaaa" << endl;
 				f.writeLoanRecord(arr, borrowCount, noOfBorrow, rightUser);
 
 				delete[] arr;

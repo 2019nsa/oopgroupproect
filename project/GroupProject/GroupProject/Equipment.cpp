@@ -53,7 +53,7 @@ string Equipment::getStatus() {
 }
 
 //Tent
-Tent::Tent(){
+Tent::Tent() {
 	flag = true;
 }
 

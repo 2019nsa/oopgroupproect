@@ -8,7 +8,15 @@ using namespace std;
 
 class Admin {
 public:
-	int adminMenu(string rightUser);
+	void adminMenu();
+private:
+	void input1();
+	void input2();
+	void input3();
+	void input4();
+	void input5();
+	void input6();
 };
+
 
 #endif
