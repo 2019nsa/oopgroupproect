@@ -7,13 +7,7 @@
 using namespace std;
 
 class Admin {
-private:
-	string userID;
-	string password;
 public:
-	Admin();
-	string getUserID();
-	string getPassword();
 	int adminMenu();
 };
 

@@ -104,8 +104,8 @@ int main() {
 	}
 	for (int i = 0; i < 1; i++, row++) {
 		LoginSystem[row] = new string[3];
-		LoginSystem[row][0] = admin.getUserID();
-		LoginSystem[row][1] = admin.getPassword();
+		LoginSystem[row][0] = "admin";
+		LoginSystem[row][1] = "admin";
 		LoginSystem[row][2] = "admin";
 	}
 
