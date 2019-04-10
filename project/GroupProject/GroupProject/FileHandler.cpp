@@ -354,8 +354,10 @@ void FileHandler::writeLoanRecord(string* arr, int& borrowCount, int noOfBorrow,
 			borrow2d[borrowCount][2] = arr[i];
 			if (arr[i].substr(0, 1) == "T") {
 				for (int k = 0; k < ten.getTentCount(); k++) {
-					if (arr[i] == ten.getTent()[k][0])
+					if (arr[i] == ten.getTent()[k][0]) {
 						borrow2d[borrowCount][3] = ten.getTent()[k][1];
+						ten.getTent();
+					}
 				}
 			}
 			else if (arr[i].substr(0, 1) == "S") {

@@ -53,6 +53,10 @@ string Equipment::getStatus() {
 }
 
 //Tent
+Tent::Tent(){
+	flag = true;
+}
+
 void Tent::setTentSize(string tentSize) {
 	this->tentSize = tentSize;
 }
@@ -102,12 +106,14 @@ string Tent::getColour() {
 }
 
 string** Tent::getTent() {
-	setAll();
+	if (flag = true)
+		setAll();
 	return tent;
 }
 
 int Tent::getTentCount() {
-	setAll();
+	if (flag = true)
+		setAll();
 	return tentCount;
 }
 
@@ -132,6 +138,7 @@ void Tent::setAll() {
 	}
 	setTent(tent);
 	setTentCount(tentCount);
+	flag = false;
 }
 
 void Tent::deleteAll() {
@@ -143,6 +150,10 @@ void Tent::deleteAll() {
 }
 
 //Stove
+Stove::Stove() {
+	flag = true;
+}
+
 void Stove::setStoveType(string stoveType) {
 	this->stoveType = stoveType;
 }
@@ -166,11 +177,13 @@ string Stove::getFuelType() {
 	return fuelType;
 }
 string** Stove::getStove() {
-	setAll();
+	if (flag = true)
+		setAll();
 	return stove;
 }
 int Stove::getStoveCount() {
-	setAll();
+	if (flag = true)
+		setAll();
 	return stoveCount;
 }
 void Stove::setAll() {
@@ -191,6 +204,7 @@ void Stove::setAll() {
 	}
 	setStove(stove);
 	setStoveCount(stoveCount);
+	flag = false;
 }
 
 void Stove::deleteAll() {
@@ -202,6 +216,10 @@ void Stove::deleteAll() {
 }
 
 //Lantern
+Lantern::Lantern() {
+	flag = true;
+}
+
 void Lantern::setLanternSize(string lanternSize) {
 	this->lanternSize = lanternSize;
 }
@@ -230,11 +248,13 @@ string Lantern::getFuelType() {
 	return fuelType;
 }
 string** Lantern::getLantern() {
-	setAll();
+	if (flag = true)
+		setAll();
 	return lantern;
 }
 int Lantern::getLanternCount() {
-	setAll();
+	if (flag = true)
+		setAll();
 	return lanternCount;
 }
 void Lantern::setAll() {
@@ -256,6 +276,7 @@ void Lantern::setAll() {
 	}
 	setLantern(lantern);
 	setLanternCount(lanternCount);
+	flag = false;
 }
 
 void Lantern::deleteAll() {

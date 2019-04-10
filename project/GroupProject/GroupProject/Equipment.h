@@ -44,7 +44,9 @@ private:
 	string colour;
 	string** tent;
 	int tentCount;
+	bool flag;
 public:
+	Tent();
 	void setTentSize(string tentSize);
 	void setTentType(string tentType);
 	void setNumberOfDoors(string numberOfDoors);
@@ -71,7 +73,9 @@ private:
 	string fuelType;
 	string** stove;
 	int stoveCount;
+	bool flag;
 public:
+	Stove();
 	void setStoveType(string stoveType);
 	void setFuelType(string fuelType);
 	void setStove(string** stove);
@@ -93,7 +97,9 @@ private:
 	string fuelType;
 	string** lantern;
 	int lanternCount;
+	bool flag;
 public:
+	Lantern();
 	void setLanternSize(string lanternSize);
 	void setLanternType(string lanternType);
 	void setFuelType(string fuelType);
