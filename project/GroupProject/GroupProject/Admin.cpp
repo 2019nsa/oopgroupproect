@@ -2,19 +2,6 @@
 
 using namespace std;
 
-Admin::Admin() {
-	this->userID = "admin";
-	this->password = "admin";
-}
-
-string Admin::getUserID() {
-	return userID;
-}
-
-string Admin::getPassword() {
-	return password;
-}
-
 int Admin::adminMenu() {
 	int option = 0;
 	cout << "1) Inserting tabulated files containing batches of users and batches of camp equipment.\n";
