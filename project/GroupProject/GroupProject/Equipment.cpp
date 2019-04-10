@@ -107,6 +107,7 @@ string** Tent::getTent() {
 }
 
 int Tent::getTentCount() {
+	setAllTent();
 	return tentCount;
 }
 
@@ -161,6 +162,7 @@ string** Stove::getStove() {
 	return stove;
 }
 int Stove::getStoveCount() {
+	setAllStove();
 	return stoveCount;
 }
 void Stove::setAllStove() {
@@ -216,6 +218,7 @@ string** Lantern::getLantern() {
 	return lantern;
 }
 int Lantern::getLanternCount() {
+	setAllLantern();
 	return lanternCount;
 }
 void Lantern::setAllLantern() {

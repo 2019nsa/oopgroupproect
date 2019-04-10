@@ -57,6 +57,7 @@ string** Scout::getScout() {
 }
 
 int Scout::getScoutCount() {
+	setAll();
 	return scoutCount;
 }
 
@@ -99,6 +100,7 @@ string** Scouts::getScouts() {
 }
 
 int Scouts::getScoutsCount() {
+	setAll();
 	return scoutsCount;
 }
 
@@ -142,6 +144,7 @@ string** Scouters::getScouters() {
 }
 
 int Scouters::getScoutersCount() {
+	setAll();
 	return scoutersCount;
 }
 

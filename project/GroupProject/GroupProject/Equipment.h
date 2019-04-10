@@ -1,9 +1,9 @@
+#ifndef CAMPEQUIPMENT_H
+#define	CAMPEQUIPMENT_H
+
 #include <string>
 
 using namespace std;
-
-#ifndef CAMPEQUIPMENT_H
-#define	CAMPEQUIPMENT_H
 
 //Camp Equipment
 class Equipment {
