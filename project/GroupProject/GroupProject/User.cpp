@@ -234,7 +234,105 @@ void Scouts::setAll() {
 }
 
 void Scouts::scoutsMenu(string rightUser) {
+	for (;;) {
+		system("cls");
+		int option = 0;
+		Tent ten;
+		Stove sto;
+		Lantern lan;
+		cout << "1) Display the available camp equipment.\n";
+		cout << "2) Display my loan record.\n";
+		cout << "3) Equipment loan. (For users who have not borrowed any items)\n";
+		cout << "4) Returning camp equipment.\n";
+		cout << "5) Exit.\n\n";
+		cout << "Enter the number(1 - 5): ";
+		cin >> option;
 
+		if (option == 1) {
+			system("cls");
+			for (int i = 0; i < ten.getTentCount(); i++) {
+				if (ten.getTent()[i][5] == "good") {
+					for (int j = 0; j < 12; j++) {
+						cout << ten.getTent()[i][j] << " ";
+					}
+					cout << endl;
+				}
+			}
+			cout << endl;
+			for (int i = 0; i < sto.getStoveCount(); i++) {
+				if (sto.getStove()[i][5] == "good") {
+					for (int j = 0; j < 9; j++) {
+						cout << sto.getStove()[i][j] << " ";
+					}
+					cout << endl;
+				}
+			}
+			cout << endl;
+			for (int i = 0; i < lan.getLanternCount(); i++) {
+				if (lan.getLantern()[i][5] == "good") {
+					for (int j = 0; j < 10; j++) {
+						cout << lan.getLantern()[i][j] << " ";
+					}
+					cout << endl;
+				}
+			}
+			system("pause");
+		}
+		else if (option == 2) {
+			system("cls");
+			FileHandler f;
+			f.readLoanRecord(rightUser);
+			system("pause");
+		}
+		else if (option == 3) {
+			system("cls");
+			int typeLimit;
+			FileHandler f;
+			bool flag = f.readLoanRecord(rightUser);
+			if (flag == true) {
+				system("cls");
+				string type;
+				if (rightUser.substr(0, 3) == "SCT") {
+					for (int i = 0; i < scoutsCount; i++) {
+						if (rightUser == scouts[i][0]) {
+							type = scouts[i][5];
+							break;
+						}
+					}
+				}
+				if (type == "Member") {
+					cout << "You can borrow at most 1 item." << endl;
+					typeLimit = 1;
+				}
+				else if (type == "Patrol Leader" || type == "Assistant Patrol Leader") {
+					cout << "You can borrow at most 3 item." << endl;
+					typeLimit = 3;
+				}
+				int noOfBorrow;
+				LoanControl l;
+				string *arr = l.loanItem(typeLimit, noOfBorrow);
+				int borrowCount;
+				f.writeLoanRecord(arr, borrowCount, noOfBorrow, rightUser);
+
+				delete[] arr;
+				arr = 0;
+			}
+			else {
+				cout << endl;
+				cout << "You have alreadly borrowed something!" << endl;
+				cout << "Return the equipment first." << endl;
+			}
+			system("pause");
+		}
+		else if (option == 4)
+			option = 2;//
+		else if (option == 5) {
+			cout << "thank you for using this system." << endl;
+			// Hold the command window
+			system("pause");
+			break;
+		}
+	}
 }
 
 void Scouts::deleteAll() {
@@ -290,7 +388,101 @@ void Scouters::setAll() {
 }
 
 void Scouters::scoutersMenu(string rightUser) {
+	for (;;) {
+		system("cls");
+		int option = 0;
+		Tent ten;
+		Stove sto;
+		Lantern lan;
+		cout << "1) Display the available camp equipment.\n";
+		cout << "2) Display my loan record.\n";
+		cout << "3) Equipment loan. (For users who have not borrowed any items)\n";
+		cout << "4) Returning camp equipment.\n";
+		cout << "5) Exit.\n\n";
+		cout << "Enter the number(1 - 5): ";
+		cin >> option;
 
+		if (option == 1) {
+			system("cls");
+			for (int i = 0; i < ten.getTentCount(); i++) {
+				if (ten.getTent()[i][5] == "good") {
+					for (int j = 0; j < 12; j++) {
+						cout << ten.getTent()[i][j] << " ";
+					}
+					cout << endl;
+				}
+			}
+			cout << endl;
+			for (int i = 0; i < sto.getStoveCount(); i++) {
+				if (sto.getStove()[i][5] == "good") {
+					for (int j = 0; j < 9; j++) {
+						cout << sto.getStove()[i][j] << " ";
+					}
+					cout << endl;
+				}
+			}
+			cout << endl;
+			for (int i = 0; i < lan.getLanternCount(); i++) {
+				if (lan.getLantern()[i][5] == "good") {
+					for (int j = 0; j < 10; j++) {
+						cout << lan.getLantern()[i][j] << " ";
+					}
+					cout << endl;
+				}
+			}
+			system("pause");
+		}
+		else if (option == 2) {
+			system("cls");
+			FileHandler f;
+			f.readLoanRecord(rightUser);
+			system("pause");
+		}
+		else if (option == 3) {
+			system("cls");
+			int typeLimit;
+			FileHandler f;
+			bool flag = f.readLoanRecord(rightUser);
+			if (flag == true) {
+				system("cls");
+				string type;
+				if (rightUser.substr(0, 3) == "SCT") {
+					for (int i = 0; i < scoutersCount; i++) {
+						if (rightUser == scouters[i][0]) {
+							type = scouters[i][5];
+							break;
+						}
+					}
+				}
+				if (type == "Scouter") {
+					cout << "You can borrow at most 5 item." << endl;
+					typeLimit = 5;
+				}
+				int noOfBorrow;
+				LoanControl l;
+				string *arr = l.loanItem(typeLimit, noOfBorrow);
+				int borrowCount;
+				f.writeLoanRecord(arr, borrowCount, noOfBorrow, rightUser);
+
+				delete[] arr;
+				arr = 0;
+			}
+			else {
+				cout << endl;
+				cout << "You have alreadly borrowed something!" << endl;
+				cout << "Return the equipment first." << endl;
+			}
+			system("pause");
+		}
+		else if (option == 4)
+			option = 2;//
+		else if (option == 5) {
+			cout << "thank you for using this system." << endl;
+			// Hold the command window
+			system("pause");
+			break;
+		}
+	}
 }
 
 void Scouters::deleteAll() {

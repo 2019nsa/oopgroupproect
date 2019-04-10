@@ -11,7 +11,7 @@ string* LoanControl::loanItem(int typeLimit, int& noOfBorrow) {
 	bool *check = new bool[typeLimit];
 	do {
 		cout << "What would you like to borrow? (if you just borrow 1 item, just type n for other itemID.)" << endl;
-		cout << "For example (you can borrow at most 2 things): T002 n " << endl;
+		cout << "For example (if you can borrow at most 2 things): T002 n " << endl;
 		cout << "Input at most " << typeLimit << " itemID to borrow:";
 		arr[typeLimit] = "n";
 		for (int i = 0; i < typeLimit; i++) {
