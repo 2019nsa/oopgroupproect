@@ -24,7 +24,7 @@ string* LoanControl::loanItem(int typeLimit, int& noOfBorrow) {
 			if (arr[i].substr(0, 1) == "T") {
 				for (int j = 0; j < ten.getTentCount(); j++) {
 					if (arr[i] == ten.getTent()[j][0]) {
-						if (ten.getTent()[j][5] != "good" || ten.getTent()[j][6] != "in") {
+						if (ten.getTent()[j][5] != "good" && ten.getTent()[j][6] != "in") {
 							cout << ten.getTent()[j][0] << " is not available." << endl;
 							check[i] = false;
 						}
@@ -34,7 +34,7 @@ string* LoanControl::loanItem(int typeLimit, int& noOfBorrow) {
 			else if (arr[i].substr(0, 1) == "S") {
 				for (int j = 0; j < sto.getStoveCount(); j++) {
 					if (arr[i] == sto.getStove()[j][0]) {
-						if (sto.getStove()[j][5] != "good" || sto.getStove()[j][6] != "in") {
+						if (sto.getStove()[j][5] != "good" && sto.getStove()[j][6] != "in") {
 							cout << sto.getStove()[j][0] << " is not available." << endl;
 							check[i] = false;
 						}
@@ -44,7 +44,7 @@ string* LoanControl::loanItem(int typeLimit, int& noOfBorrow) {
 			else if (arr[i].substr(0, 1) == "L") {
 				for (int j = 0; j < lan.getLanternCount(); j++) {
 					if (arr[i] == lan.getLantern()[j][0]) {
-						if (lan.getLantern()[j][5] != "good" || lan.getLantern()[j][6] != "in") {
+						if (lan.getLantern()[j][5] != "good" && lan.getLantern()[j][6] != "in") {
 							cout << lan.getLantern()[j][0] << " is not available." << endl;
 							check[i] = false;
 						}

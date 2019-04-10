@@ -238,6 +238,9 @@ string** FileHandler::lanternFile(int& lanternCount) {
 bool FileHandler::readLoanRecord(string rightUser) {
 	ifstream loanRecord("C:\\Users\\s2012\\OneDrive\\Desktop\\People.txt");
 	string info;
+	int recordCount = 0;
+	string** record2d = 0;
+	record2d = new string*[100];
 	bool flag = true;
 	if (!loanRecord) {
 		cout << "There are no any records." << endl;
@@ -245,25 +248,38 @@ bool FileHandler::readLoanRecord(string rightUser) {
 	else {
 		cout << "Your loan record: " << endl;
 		cout << "loan date\titemID\titem name\t\treturn date" << endl;
+
 		while (!loanRecord.eof()) {
 			getline(loanRecord, info, '|');
-			if (info.substr(0, 6) == rightUser) {
-				for (int i = 0; i < 5; i++) {
-					if (i > 0 && i < 4) {
-						getline(loanRecord, info, '|');
-						cout << info << "\t";
-					}
-					else if (i > 3) {
-						cout << "\t";
-						getline(loanRecord, info);
-						cout << info << endl;
-					}
+			record2d[recordCount] = new string[6];
+			for (int j = 0; j < 6; j++) {
+				if (j == 0)
+					record2d[recordCount][j] = info;
+				else if (j >= 1 && j < 5) {
+					getline(loanRecord, info, '|');
+					record2d[recordCount][j] = info;
 				}
+				else if (j > 4) {
+					getline(loanRecord, info);
+					record2d[recordCount][j] = info;
+				}
+			}
+			getline(loanRecord, info);
+			recordCount++;
+		}
+		for (int i = 0; i < recordCount; i++) {
+			if (record2d[i][0].substr(0, 6) == rightUser && record2d[i][5] == "out") {
+				for (int j = 1; j < 5; j++) {
+					if (j > 0 && j < 3)
+						cout << record2d[i][j] << "\t";
+					else if (j == 3)
+						cout << record2d[i][j] << "\t\t";
+					else if (j > 3)
+						cout << record2d[i][j];
+				}
+				cout << endl;
 				flag = false;
 			}
-			else
-				getline(loanRecord, info);
-			getline(loanRecord, info);
 		}
 	}
 	return flag;
@@ -331,15 +347,15 @@ void FileHandler::writeLoanRecord(string* arr, int& borrowCount, int noOfBorrow,
 		borrow2d = new string*[100];
 		while (!loanRecord.eof()) {
 			getline(loanRecord, info, '|');
-			borrow2d[borrowCount] = new string[5];
-			for (int j = 0; j < 5; j++) {
+			borrow2d[borrowCount] = new string[6];
+			for (int j = 0; j < 6; j++) {
 				if (j == 0)
 					borrow2d[borrowCount][j] = info;
-				else if (j > 0 && j < 4) {
+				else if (j > 0 && j < 5) {
 					getline(loanRecord, info, '|');
 					borrow2d[borrowCount][j] = info;
 				}
-				else if (j > 3) {
+				else if (j > 4) {
 					getline(loanRecord, info);
 					borrow2d[borrowCount][j] = info;
 				}
@@ -377,6 +393,7 @@ void FileHandler::writeLoanRecord(string* arr, int& borrowCount, int noOfBorrow,
 				}
 			}
 			borrow2d[borrowCount][4] = newDate;//return Date
+			borrow2d[borrowCount][5] = "out";
 			borrowCount++;
 		}
 		loanRecord.open("C:\\Users\\s2012\\OneDrive\\Desktop\\People.txt", ofstream::out | ofstream::trunc);
