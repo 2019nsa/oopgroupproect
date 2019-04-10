@@ -106,13 +106,14 @@ string Tent::getColour() {
 }
 
 string** Tent::getTent() {
-	if (flag = true)
+	if (flag == true) {
 		setAll();
+	}
 	return tent;
 }
 
 int Tent::getTentCount() {
-	if (flag = true)
+	if (flag == true)
 		setAll();
 	return tentCount;
 }
@@ -177,12 +178,12 @@ string Stove::getFuelType() {
 	return fuelType;
 }
 string** Stove::getStove() {
-	if (flag = true)
+	if (flag == true)
 		setAll();
 	return stove;
 }
 int Stove::getStoveCount() {
-	if (flag = true)
+	if (flag == true)
 		setAll();
 	return stoveCount;
 }
@@ -248,12 +249,12 @@ string Lantern::getFuelType() {
 	return fuelType;
 }
 string** Lantern::getLantern() {
-	if (flag = true)
+	if (flag == true)
 		setAll();
 	return lantern;
 }
 int Lantern::getLanternCount() {
-	if (flag = true)
+	if (flag == true)
 		setAll();
 	return lanternCount;
 }

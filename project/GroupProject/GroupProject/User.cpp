@@ -405,7 +405,7 @@ void Scouters::scoutersMenu(string rightUser) {
 		if (option == 1) {
 			system("cls");
 			for (int i = 0; i < ten.getTentCount(); i++) {
-				if (ten.getTent()[i][5] == "good") {
+				if (ten.getTent()[i][5] == "good" && ten.getTent()[i][6] == "in") {
 					for (int j = 0; j < 12; j++) {
 						cout << ten.getTent()[i][j] << " ";
 					}
@@ -414,7 +414,7 @@ void Scouters::scoutersMenu(string rightUser) {
 			}
 			cout << endl;
 			for (int i = 0; i < sto.getStoveCount(); i++) {
-				if (sto.getStove()[i][5] == "good") {
+				if (sto.getStove()[i][5] == "good" && sto.getStove()[i][6] == "in") {
 					for (int j = 0; j < 9; j++) {
 						cout << sto.getStove()[i][j] << " ";
 					}
@@ -423,7 +423,7 @@ void Scouters::scoutersMenu(string rightUser) {
 			}
 			cout << endl;
 			for (int i = 0; i < lan.getLanternCount(); i++) {
-				if (lan.getLantern()[i][5] == "good") {
+				if (lan.getLantern()[i][5] == "good" && sto.getStove()[i][6] == "in") {
 					for (int j = 0; j < 10; j++) {
 						cout << lan.getLantern()[i][j] << " ";
 					}

@@ -272,6 +272,9 @@ bool FileHandler::readLoanRecord(string rightUser) {
 void FileHandler::writeLoanRecord(string* arr, int& borrowCount, int noOfBorrow, string rightUser) {
 	ifstream loanRecord("C:\\Users\\s2012\\OneDrive\\Desktop\\People.txt");
 	string info;
+	Tent ten;
+	Stove sto;
+	Lantern lan;
 	if (!loanRecord) {
 		ofstream file("C:\\Users\\s2012\\OneDrive\\Desktop\\People.txt");
 	}
@@ -324,9 +327,6 @@ void FileHandler::writeLoanRecord(string* arr, int& borrowCount, int noOfBorrow,
 
 		string info;
 		borrowCount = 0;
-		Tent ten;
-		Stove sto;
-		Lantern lan;
 		string** borrow2d = 0;
 		borrow2d = new string*[100];
 		while (!loanRecord.eof()) {
@@ -356,33 +356,94 @@ void FileHandler::writeLoanRecord(string* arr, int& borrowCount, int noOfBorrow,
 				for (int k = 0; k < ten.getTentCount(); k++) {
 					if (arr[i] == ten.getTent()[k][0]) {
 						borrow2d[borrowCount][3] = ten.getTent()[k][1];
-						ten.getTent();
+						ten.getTent()[k][6] = "out";
 					}
 				}
 			}
 			else if (arr[i].substr(0, 1) == "S") {
 				for (int k = 0; k < sto.getStoveCount(); k++) {
-					if (arr[i] == sto.getStove()[k][0])
+					if (arr[i] == sto.getStove()[k][0]) {
 						borrow2d[borrowCount][3] = sto.getStove()[k][1];
+						sto.getStove()[k][6] = "out";
+					}
 				}
 			}
 			else if (arr[i].substr(0, 1) == "L") {
 				for (int k = 0; k < lan.getLanternCount(); k++) {
-					if (arr[i] == lan.getLantern()[k][0])
+					if (arr[i] == lan.getLantern()[k][0]) {
 						borrow2d[borrowCount][3] = lan.getLantern()[k][1];
+						lan.getLantern()[k][6] = "out";
+					}
 				}
 			}
 			borrow2d[borrowCount][4] = newDate;//return Date
 			borrowCount++;
 		}
+		loanRecord.open("C:\\Users\\s2012\\OneDrive\\Desktop\\People.txt", ofstream::out | ofstream::trunc);
+		loanRecord.close();
+		ofstream newLoanRecord("C:\\Users\\s2012\\OneDrive\\Desktop\\People.txt");
+		if (newLoanRecord.is_open())
+		{
+			for (int i = 0; i < borrowCount; i++) {
+				for (int j = 0; j < 5; j++) {
+					if (j != 4)
+						newLoanRecord << borrow2d[i][j] << "|";
+					else
+						newLoanRecord << borrow2d[i][j];
+				}
+				newLoanRecord << "\n\n";
+			}
+			newLoanRecord.close();
+		}
+		else
+			cout << "Unable to open file";
 		for (int i = 0; i < borrowCount; i++) {
 			for (int j = 0; j < 5; j++) {
 				cout << borrow2d[i][j] << " ";
 			}
 			cout << endl;
 		}
-
-
-
+		ifstream equipment;
+		equipment.open("C:\\Users\\s2012\\OneDrive\\Desktop\\name.txt", ofstream::out | ofstream::trunc);
+		equipment.close();
+		ofstream newEquipment("C:\\Users\\s2012\\OneDrive\\Desktop\\name.txt");
+		if (newEquipment.is_open())
+		{
+			for (int i = 0; i < ten.getTentCount(); i++) {
+				for (int j = 0; j < 12; j++) {
+					if (j != 11)
+						newEquipment << ten.getTent()[i][j] << "|";
+					else
+						newEquipment << ten.getTent()[i][j];
+				}
+				newEquipment << "\n\n";
+			}
+			for (int i = 0; i < sto.getStoveCount(); i++) {
+				for (int j = 0; j < 9; j++) {
+					if (j != 8)
+						newEquipment << sto.getStove()[i][j] << "|";
+					else
+						newEquipment << sto.getStove()[i][j];
+				}
+				newEquipment << "\n\n";
+			}
+			for (int i = 0; i < lan.getLanternCount(); i++) {
+				for (int j = 0; j < 10; j++) {
+					if (j != 9)
+						newEquipment << lan.getLantern()[i][j] << "|";
+					else
+						newEquipment << lan.getLantern()[i][j];
+				}
+				newEquipment << "\n\n";
+			}
+			newEquipment.close();
+		}
+		else
+			cout << "Unable to open file";
+		for (int i = 0; i < borrowCount; i++) {
+			delete[] borrow2d[i];
+		}
+		delete[] borrow2d;
+		borrow2d = 0;
 	}
 }
