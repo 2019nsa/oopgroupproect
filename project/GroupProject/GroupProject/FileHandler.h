@@ -5,6 +5,7 @@
 #include <string>
 #include <iostream>
 #include <ctime>
+#include "Equipment.h"
 
 using namespace std;
 
@@ -20,6 +21,8 @@ public:
 
 	bool readLoanRecord(string rightUser);
 	void writeLoanRecord(string* arr, int& borrowCount, int noOfBorrow, string rightUser);
+
+	void writecondition(Tent adminTent,Stove adminStove,Lantern adminLantern);
 };
 
 #endif

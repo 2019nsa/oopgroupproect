@@ -6,7 +6,6 @@ using namespace std;
 
 void Admin::adminMenu() {
 	int input = 0;
-	while (input != 6) {
 		cout << "1) Inserting tabulated files containing batches of users and batches of camp equipment.\n";
 		cout << "2) Display loan records containing loan date.\n";
 		cout << "3) Display list of camp equipment.\n";
@@ -37,9 +36,9 @@ void Admin::adminMenu() {
 		default:
 			cout << "invalid input!";
 			system("pause");
-			system("cls");
+//			system("cls");
+			adminMenu();
 			break;
-		}
 	}
 }
 
@@ -86,7 +85,6 @@ void Admin::input3() {
 		}
 		cout << endl;
 	}
-	
 	system("pause");
 	system("cls");
 }
@@ -97,6 +95,7 @@ void Admin::input4() {
 	Tent adminTent;
 	Stove adminStove;
 	Lantern adminLantern;
+	FileHandler adminF;
 	cout << "Tent\n";
 	for (int i = 0; i < adminTent.getTentCount(); i++) {
 		for (int j = 0; j < 12; j++) {
@@ -130,40 +129,54 @@ void Admin::input4() {
 	cout << "select which equipment condition to update by input Item code\n";
 	string item;
 	bool flag = false;
-//	string exit = "exit";
+	string condition;
 	cin >> item;
 	for (int i = 0; i < adminTent.getTentCount(); i++) {
 		if (item == adminTent.getTent()[i][0]) {
-			cout << "Tent is ok!";
 			flag = true;
+			cout << "condition of " << adminTent.getTent()[i][0] << " want to change to :";
+			cin >> condition;
+			adminTent.getTent()[i][5] = condition;
+	//		adminF.writecondition(adminTent,adminStove,adminLantern);
 			system("pause");
+			system("cls");
+			adminMenu();
 		}
 	}
 	for (int i = 0; i < adminStove.getStoveCount(); i++) {
 		if (item == adminStove.getStove()[i][0]) {
-			cout << "Stove is ok!";
 			flag = true;
+			cout << "condition of " << adminStove.getStove()[i][0] << " want to change to :";
+			cin >> condition;
+			adminStove.getStove()[i][5] = condition;
 			system("pause");
+			system("cls");
+			adminMenu();
 		}
 	}
 	for (int i = 0; i < adminLantern.getLanternCount(); i++) {
 		if (item == adminLantern.getLantern()[i][0]){
-			cout << "line 136 is ok!";
 			flag = true;
+			cout << "condition of " << adminLantern.getLantern()[i][0] << " want to change to :";
+			cin >> condition;
+			adminLantern.getLantern()[i][5] = condition;
 			system("pause");
+			system("cls");
+			adminMenu();
 		}
 	}
-	if (item == "exit") {
-		system("cls");
-		adminMenu();
+	if (flag == false) {
+		if (item == "exit") {
+			system("cls");
+			adminMenu();
+		}
+		else {
+			cout << "wrong input please try again!\n";
+			system("pause");
+			system("cls");
+			input4();
+		}
 	}
-	else {
-		cout << "wrong input please try again!\n";
-		system("pause");
-		input4();
-	}
-	cout << "input4 is end!\n";
-	system("cls");
 }
 
 void Admin::input5() {
@@ -174,4 +187,5 @@ void Admin::input6() {
 	cout << "thank you for using this system." << endl;
 	// Hold the command window
 	system("pause");
+
 }

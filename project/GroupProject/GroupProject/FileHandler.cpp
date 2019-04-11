@@ -447,3 +447,36 @@ void FileHandler::writeLoanRecord(string* arr, int& borrowCount, int noOfBorrow,
 		borrow2d = 0;
 	}
 }
+
+void writecondition(Tent adminTent, Stove adminStove, Lantern adminLantern){
+	ofstream file;
+	file.open("C:\\Users\\leoch\\Desktop\\admintest.txt", ofstream::out | ofstream::trunc);
+	for (int i = 0; i < adminTent.getTentCount(); i++) {
+		for (int j = 0; j < 12; j++) {
+			cout << adminTent.getTent()[i][j];
+			if (j < 11) {
+				cout << "|";
+			}
+		}
+		cout << endl;
+	}
+	for (int i = 0; i < adminLantern.getLanternCount(); i++) {
+		for (int j = 0; j < 10; j++) {
+			cout << adminLantern.getLantern()[i][j];
+			if (j < 9) {
+				cout << "|";
+			}
+		}
+		cout << endl;
+	}
+	for (int i = 0; i < adminStove.getStoveCount(); i++) {
+		for (int j = 0; j < 9; j++) {
+			cout << adminStove.getStove()[i][j];
+			if (j < 8) {
+				cout << "|";
+			}
+		}
+		cout << endl;
+	}
+
+}

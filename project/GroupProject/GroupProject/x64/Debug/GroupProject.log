@@ -1,2 +1,3 @@
 ﻿  Admin.cpp
+c:\users\leoch\source\repos\oopgroupproect3\project\groupproject\groupproject\admin.cpp(98): warning C4101: 'adminF': unreferenced local variable
   GroupProject.vcxproj -> C:\Users\leoch\Source\Repos\oopgroupproect3\project\GroupProject\x64\Debug\GroupProject.exe
