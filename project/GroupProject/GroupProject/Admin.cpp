@@ -2,10 +2,11 @@
 #include "FileHandler.h"
 #include "Equipment.h"
 #include "LoanControl.h"
+
 using namespace std;
 
 void Admin::adminMenu() {
-	int input = 0;
+		int input;
 		cout << "1) Inserting tabulated files containing batches of users and batches of camp equipment.\n";
 		cout << "2) Display loan records containing loan date.\n";
 		cout << "3) Display list of camp equipment.\n";
@@ -14,6 +15,11 @@ void Admin::adminMenu() {
 		cout << "6) Exit.\n\n";
 		cout << "Enter the number(1 - 6): \n";
 		cin >> input;
+		if (!cin) {
+			cin.clear();
+			cin.ignore(numeric_limits<streamsize>::max(), '\n');
+			cout << "please input number(1 - 6)";
+		}
 		switch (input) {
 		case 1:
 			input1();
@@ -36,10 +42,9 @@ void Admin::adminMenu() {
 		default:
 			cout << "invalid input!";
 			system("pause");
-//			system("cls");
+			system("cls");
 			adminMenu();
-			break;
-	}
+		}
 }
 
 void Admin::input1() {
@@ -87,6 +92,7 @@ void Admin::input3() {
 	}
 	system("pause");
 	system("cls");
+	adminMenu();
 }
 
 //Update condition of equipment.
@@ -137,7 +143,9 @@ void Admin::input4() {
 			cout << "condition of " << adminTent.getTent()[i][0] << " want to change to :";
 			cin >> condition;
 			adminTent.getTent()[i][5] = condition;
-	//		adminF.writecondition(adminTent,adminStove,adminLantern);
+			cout << "condition change : "<<adminTent.getTent()[i][5] << endl;
+			adminF.writecondition(adminTent,adminStove,adminLantern);
+			cout << "condition change : " << adminTent.getTent()[i][5] << endl;
 			system("pause");
 			system("cls");
 			adminMenu();

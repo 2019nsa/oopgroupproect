@@ -448,35 +448,43 @@ void FileHandler::writeLoanRecord(string* arr, int& borrowCount, int noOfBorrow,
 	}
 }
 
-void writecondition(Tent adminTent, Stove adminStove, Lantern adminLantern){
+void FileHandler::writecondition(Tent adminTent, Stove adminStove, Lantern adminLantern){
+	cout << "condition change in filehandler : " << adminTent.getTent()[0][5] << endl;
+	system("pause");
 	ofstream file;
-	file.open("C:\\Users\\leoch\\Desktop\\admintest.txt", ofstream::out | ofstream::trunc);
-	for (int i = 0; i < adminTent.getTentCount(); i++) {
-		for (int j = 0; j < 12; j++) {
-			cout << adminTent.getTent()[i][j];
-			if (j < 11) {
-				cout << "|";
+	file.open("C:\\Users\\leoch\\Desktop\\admintest.txt",ofstream::trunc);
+	file.close();
+	file.open("C:\\Users\\leoch\\Desktop\\admintest.txt",ofstream::out);
+	if (file.is_open()) {
+		for (int i = 0; i < adminTent.getTentCount(); i++) {
+			for (int j = 0; j < 12; j++) {
+				file << adminTent.getTent()[i][j];
+				if (j < 11) {
+					file << "|";
+				}
 			}
+			file << "\n\n";
 		}
-		cout << endl;
-	}
-	for (int i = 0; i < adminLantern.getLanternCount(); i++) {
-		for (int j = 0; j < 10; j++) {
-			cout << adminLantern.getLantern()[i][j];
-			if (j < 9) {
-				cout << "|";
+		for (int i = 0; i < adminLantern.getLanternCount(); i++) {
+			for (int j = 0; j < 10; j++) {
+				file << adminLantern.getLantern()[i][j];
+				if (j < 9) {
+					file << "|";
+				}
 			}
+			file << "\n\n";
 		}
-		cout << endl;
-	}
-	for (int i = 0; i < adminStove.getStoveCount(); i++) {
-		for (int j = 0; j < 9; j++) {
-			cout << adminStove.getStove()[i][j];
-			if (j < 8) {
-				cout << "|";
+		for (int i = 0; i < adminStove.getStoveCount(); i++) {
+			for (int j = 0; j < 9; j++) {
+				file << adminStove.getStove()[i][j];
+				if (j < 8) {
+					file << "|";
+				}
 			}
+			file << "\n\n";
 		}
-		cout << endl;
+		file.close();
 	}
-
+	else
+		cout << "file cannot open!";
 }

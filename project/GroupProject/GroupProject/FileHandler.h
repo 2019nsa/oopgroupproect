@@ -6,7 +6,7 @@
 #include <iostream>
 #include <ctime>
 #include "Equipment.h"
-
+#include "Admin.h"
 using namespace std;
 
 class FileHandler {
