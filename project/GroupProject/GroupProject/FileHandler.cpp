@@ -452,9 +452,9 @@ void FileHandler::writecondition(Tent adminTent, Stove adminStove, Lantern admin
 	cout << "condition change in filehandler : " << adminTent.getTent()[0][5] << endl;
 	system("pause");
 	ofstream file;
-	file.open("C:\\Users\\leoch\\Desktop\\admintest.txt",ofstream::trunc);
+	file.open("camp_equipment.txt",ofstream::trunc);
 	file.close();
-	file.open("C:\\Users\\leoch\\Desktop\\admintest.txt",ofstream::out);
+	file.open("camp_equipment.txt",ofstream::out);
 	if (file.is_open()) {
 		for (int i = 0; i < adminTent.getTentCount(); i++) {
 			for (int j = 0; j < 12; j++) {
