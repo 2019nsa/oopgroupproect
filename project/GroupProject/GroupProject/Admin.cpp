@@ -91,8 +91,79 @@ void Admin::input3() {
 	system("cls");
 }
 
+//Update condition of equipment.
 void Admin::input4() {
-
+	system("cls");
+	Tent adminTent;
+	Stove adminStove;
+	Lantern adminLantern;
+	cout << "Tent\n";
+	for (int i = 0; i < adminTent.getTentCount(); i++) {
+		for (int j = 0; j < 12; j++) {
+			cout << adminTent.getTent()[i][j];
+			if (j < 11) {
+				cout << "|";
+			}
+		}
+		cout << endl;
+	}
+	cout << "\nStove\n";
+	for (int i = 0; i < adminLantern.getLanternCount(); i++) {
+		for (int j = 0; j < 10; j++) {
+			cout << adminLantern.getLantern()[i][j];
+			if (j < 9) {
+				cout << "|";
+			}
+		}
+		cout << endl;
+	}
+	cout << "\nLantern\n";
+	for (int i = 0; i < adminStove.getStoveCount(); i++) {
+		for (int j = 0; j < 9; j++) {
+			cout << adminStove.getStove()[i][j];
+			if (j < 8) {
+				cout << "|";
+			}
+		}
+		cout << endl;
+	}
+	cout << "select which equipment condition to update by input Item code\n";
+	string item;
+	bool flag = false;
+//	string exit = "exit";
+	cin >> item;
+	for (int i = 0; i < adminTent.getTentCount(); i++) {
+		if (item == adminTent.getTent()[i][0]) {
+			cout << "Tent is ok!";
+			flag = true;
+			system("pause");
+		}
+	}
+	for (int i = 0; i < adminStove.getStoveCount(); i++) {
+		if (item == adminStove.getStove()[i][0]) {
+			cout << "Stove is ok!";
+			flag = true;
+			system("pause");
+		}
+	}
+	for (int i = 0; i < adminLantern.getLanternCount(); i++) {
+		if (item == adminLantern.getLantern()[i][0]){
+			cout << "line 136 is ok!";
+			flag = true;
+			system("pause");
+		}
+	}
+	if (item == "exit") {
+		system("cls");
+		adminMenu();
+	}
+	else {
+		cout << "wrong input please try again!\n";
+		system("pause");
+		input4();
+	}
+	cout << "input4 is end!\n";
+	system("cls");
 }
 
 void Admin::input5() {
