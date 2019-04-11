@@ -31,10 +31,10 @@ void Admin::adminMenu() {
 			input3();	//done
 			break;
 		case 4:
-			input4();
+			input4();	//done
 			break;
 		case 5:
-			input5();
+			input5();	
 			break;
 		case 6:
 			input6();	//done
@@ -143,9 +143,7 @@ void Admin::input4() {
 			cout << "condition of " << adminTent.getTent()[i][0] << " want to change to :";
 			cin >> condition;
 			adminTent.getTent()[i][5] = condition;
-			cout << "condition change : "<<adminTent.getTent()[i][5] << endl;
 			adminF.writecondition(adminTent,adminStove,adminLantern);
-			cout << "condition change : " << adminTent.getTent()[i][5] << endl;
 			system("pause");
 			system("cls");
 			adminMenu();
@@ -157,6 +155,7 @@ void Admin::input4() {
 			cout << "condition of " << adminStove.getStove()[i][0] << " want to change to :";
 			cin >> condition;
 			adminStove.getStove()[i][5] = condition;
+			adminF.writecondition(adminTent, adminStove, adminLantern);
 			system("pause");
 			system("cls");
 			adminMenu();
@@ -168,6 +167,7 @@ void Admin::input4() {
 			cout << "condition of " << adminLantern.getLantern()[i][0] << " want to change to :";
 			cin >> condition;
 			adminLantern.getLantern()[i][5] = condition;
+			adminF.writecondition(adminTent, adminStove, adminLantern);
 			system("pause");
 			system("cls");
 			adminMenu();

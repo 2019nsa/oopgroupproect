@@ -449,7 +449,6 @@ void FileHandler::writeLoanRecord(string* arr, int& borrowCount, int noOfBorrow,
 }
 
 void FileHandler::writecondition(Tent adminTent, Stove adminStove, Lantern adminLantern){
-	cout << "condition change in filehandler : " << adminTent.getTent()[0][5] << endl;
 	system("pause");
 	ofstream file;
 	file.open("camp_equipment.txt",ofstream::trunc);
