@@ -97,7 +97,7 @@ void Scout::scoutMenu(string rightUser) {
 		if (option == 1) {
 			system("cls");
 			for (int i = 0; i < ten.getTentCount(); i++) {
-				if (ten.getTent()[i][5] == "good") {
+				if (ten.getTent()[i][5] == "good" && ten.getTent()[i][6] == "in") {
 					for (int j = 0; j < 12; j++) {
 						cout << ten.getTent()[i][j] << " ";
 					}
@@ -106,7 +106,7 @@ void Scout::scoutMenu(string rightUser) {
 			}
 			cout << endl;
 			for (int i = 0; i < sto.getStoveCount(); i++) {
-				if (sto.getStove()[i][5] == "good") {
+				if (sto.getStove()[i][5] == "good" && sto.getStove()[i][6] == "in") {
 					for (int j = 0; j < 9; j++) {
 						cout << sto.getStove()[i][j] << " ";
 					}
@@ -115,7 +115,7 @@ void Scout::scoutMenu(string rightUser) {
 			}
 			cout << endl;
 			for (int i = 0; i < lan.getLanternCount(); i++) {
-				if (lan.getLantern()[i][5] == "good") {
+				if (lan.getLantern()[i][5] == "good" && lan.getLantern()[i][6] == "in") {
 					for (int j = 0; j < 10; j++) {
 						cout << lan.getLantern()[i][j] << " ";
 					}
@@ -170,8 +170,12 @@ void Scout::scoutMenu(string rightUser) {
 			}
 			system("pause");
 		}
-		else if (option == 4)
-			option = 2;//
+		else if (option == 4) {
+			system("cls");
+			FileHandler f;
+			f.updateLoanRecord(rightUser);
+			system("pause");
+		}
 		else if (option == 5) {
 			cout << "thank you for using this system." << endl;
 			// Hold the command window
@@ -251,7 +255,7 @@ void Scouts::scoutsMenu(string rightUser) {
 		if (option == 1) {
 			system("cls");
 			for (int i = 0; i < ten.getTentCount(); i++) {
-				if (ten.getTent()[i][5] == "good") {
+				if (ten.getTent()[i][5] == "good" && ten.getTent()[i][6] == "in") {
 					for (int j = 0; j < 12; j++) {
 						cout << ten.getTent()[i][j] << " ";
 					}
@@ -260,7 +264,7 @@ void Scouts::scoutsMenu(string rightUser) {
 			}
 			cout << endl;
 			for (int i = 0; i < sto.getStoveCount(); i++) {
-				if (sto.getStove()[i][5] == "good") {
+				if (sto.getStove()[i][5] == "good" && sto.getStove()[i][6] == "in") {
 					for (int j = 0; j < 9; j++) {
 						cout << sto.getStove()[i][j] << " ";
 					}
@@ -269,7 +273,7 @@ void Scouts::scoutsMenu(string rightUser) {
 			}
 			cout << endl;
 			for (int i = 0; i < lan.getLanternCount(); i++) {
-				if (lan.getLantern()[i][5] == "good") {
+				if (lan.getLantern()[i][5] == "good" && lan.getLantern()[i][6] == "in") {
 					for (int j = 0; j < 10; j++) {
 						cout << lan.getLantern()[i][j] << " ";
 					}
@@ -324,8 +328,12 @@ void Scouts::scoutsMenu(string rightUser) {
 			}
 			system("pause");
 		}
-		else if (option == 4)
-			option = 2;//
+		else if (option == 4) {
+			system("cls");
+			FileHandler f;
+			f.updateLoanRecord(rightUser);
+			system("pause");
+		}
 		else if (option == 5) {
 			cout << "thank you for using this system." << endl;
 			// Hold the command window
@@ -423,7 +431,7 @@ void Scouters::scoutersMenu(string rightUser) {
 			}
 			cout << endl;
 			for (int i = 0; i < lan.getLanternCount(); i++) {
-				if (lan.getLantern()[i][5] == "good" && sto.getStove()[i][6] == "in") {
+				if (lan.getLantern()[i][5] == "good" && lan.getLantern()[i][6] == "in") {
 					for (int j = 0; j < 10; j++) {
 						cout << lan.getLantern()[i][j] << " ";
 					}
@@ -446,10 +454,10 @@ void Scouters::scoutersMenu(string rightUser) {
 			if (flag == true) {
 				system("cls");
 				string type;
-				if (rightUser.substr(0, 3) == "SCT") {
+				if (rightUser.substr(0, 3) == "SCM") {
 					for (int i = 0; i < scoutersCount; i++) {
 						if (rightUser == scouters[i][0]) {
-							type = scouters[i][5];
+							type = scouters[i][2];
 							break;
 						}
 					}
@@ -474,8 +482,12 @@ void Scouters::scoutersMenu(string rightUser) {
 			}
 			system("pause");
 		}
-		else if (option == 4)
-			option = 2;//
+		else if (option == 4) {
+			system("cls");
+			FileHandler f;
+			f.updateLoanRecord(rightUser);
+			system("pause");
+		}
 		else if (option == 5) {
 			cout << "thank you for using this system." << endl;
 			// Hold the command window

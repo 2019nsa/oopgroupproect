@@ -21,6 +21,7 @@ public:
 
 	bool readLoanRecord(string rightUser);
 	void writeLoanRecord(string* arr, int& borrowCount, int noOfBorrow, string rightUser);
+	void updateLoanRecord(string rightUser);
 
 	void writecondition(Tent adminTent,Stove adminStove,Lantern adminLantern);
 };

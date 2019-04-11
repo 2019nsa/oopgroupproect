@@ -106,9 +106,8 @@ string Tent::getColour() {
 }
 
 string** Tent::getTent() {
-	if (flag == true) {
+	if (flag == true)
 		setAll();
-	}
 	return tent;
 }
 

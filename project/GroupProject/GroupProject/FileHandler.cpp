@@ -238,6 +238,9 @@ string** FileHandler::lanternFile(int& lanternCount) {
 bool FileHandler::readLoanRecord(string rightUser) {
 	ifstream loanRecord("C:\\Users\\s2012\\OneDrive\\Desktop\\People.txt");
 	string info;
+	int recordCount = 0;
+	string** record2d = 0;
+	record2d = new string*[100];
 	bool flag = true;
 	if (!loanRecord) {
 		cout << "There are no any records." << endl;
@@ -247,23 +250,34 @@ bool FileHandler::readLoanRecord(string rightUser) {
 		cout << "loan date\titemID\titem name\t\treturn date" << endl;
 		while (!loanRecord.eof()) {
 			getline(loanRecord, info, '|');
-			if (info.substr(0, 6) == rightUser) {
-				for (int i = 0; i < 5; i++) {
-					if (i > 0 && i < 4) {
-						getline(loanRecord, info, '|');
-						cout << info << "\t";
-					}
-					else if (i > 3) {
-						cout << "\t";
-						getline(loanRecord, info);
-						cout << info << endl;
-					}
+			record2d[recordCount] = new string[6];
+			for (int j = 0; j < 6; j++) {
+				if (j == 0)
+					record2d[recordCount][j] = info;
+				else if (j >= 1 && j <= 4) {
+					getline(loanRecord, info, '|');
+					record2d[recordCount][j] = info;
+				}
+				else if (j > 4) {
+					getline(loanRecord, info);
+					record2d[recordCount][j] = info;
+				}
+			}
+			getline(loanRecord, info);
+			recordCount++;
+		}
+		for (int i = 0; i < recordCount; i++) {
+			if (record2d[i][0] == rightUser && record2d[i][5] == "out") {
+				for (int j = 1; j < 5; j++) {
+					if (j < 3)
+						cout << record2d[i][j] << "\t";
+					else if (j == 3)
+						cout << record2d[i][j] << "\t\t";
+					else if (j > 3)
+						cout << record2d[i][j] << endl;
 				}
 				flag = false;
 			}
-			else
-				getline(loanRecord, info);
-			getline(loanRecord, info);
 		}
 	}
 	return flag;
@@ -331,15 +345,15 @@ void FileHandler::writeLoanRecord(string* arr, int& borrowCount, int noOfBorrow,
 		borrow2d = new string*[100];
 		while (!loanRecord.eof()) {
 			getline(loanRecord, info, '|');
-			borrow2d[borrowCount] = new string[5];
-			for (int j = 0; j < 5; j++) {
+			borrow2d[borrowCount] = new string[6];
+			for (int j = 0; j < 6; j++) {
 				if (j == 0)
 					borrow2d[borrowCount][j] = info;
-				else if (j > 0 && j < 4) {
+				else if (j > 0 && j <= 4) {
 					getline(loanRecord, info, '|');
 					borrow2d[borrowCount][j] = info;
 				}
-				else if (j > 3) {
+				else if (j > 4) {
 					getline(loanRecord, info);
 					borrow2d[borrowCount][j] = info;
 				}
@@ -348,7 +362,7 @@ void FileHandler::writeLoanRecord(string* arr, int& borrowCount, int noOfBorrow,
 			getline(loanRecord, info);
 		}
 		for (int i = 0; i < noOfBorrow; i++) {
-			borrow2d[borrowCount] = new string[5];
+			borrow2d[borrowCount] = new string[6];
 			borrow2d[borrowCount][0] = rightUser;
 			borrow2d[borrowCount][1] = date;//Current Date
 			borrow2d[borrowCount][2] = arr[i];
@@ -377,6 +391,7 @@ void FileHandler::writeLoanRecord(string* arr, int& borrowCount, int noOfBorrow,
 				}
 			}
 			borrow2d[borrowCount][4] = newDate;//return Date
+			borrow2d[borrowCount][5] = "out";
 			borrowCount++;
 		}
 		loanRecord.open("C:\\Users\\s2012\\OneDrive\\Desktop\\People.txt", ofstream::out | ofstream::trunc);
@@ -385,24 +400,28 @@ void FileHandler::writeLoanRecord(string* arr, int& borrowCount, int noOfBorrow,
 		if (newLoanRecord.is_open())
 		{
 			for (int i = 0; i < borrowCount; i++) {
-				for (int j = 0; j < 5; j++) {
-					if (j != 4)
-						newLoanRecord << borrow2d[i][j] << "|";
-					else
-						newLoanRecord << borrow2d[i][j];
+				if (i < borrowCount - 1) {
+					for (int j = 0; j < 6; j++) {
+						if (j != 5)
+							newLoanRecord << borrow2d[i][j] << "|";
+						else
+							newLoanRecord << borrow2d[i][j];
+					}
+					newLoanRecord << "\n\n";
 				}
-				newLoanRecord << "\n\n";
+				else if (i == borrowCount - 1) {
+					for (int j = 0; j < 6; j++) {
+						if (j != 5)
+							newLoanRecord << borrow2d[i][j] << "|";
+						else
+							newLoanRecord << borrow2d[i][j];
+					}
+				}
 			}
 			newLoanRecord.close();
 		}
 		else
 			cout << "Unable to open file";
-		for (int i = 0; i < borrowCount; i++) {
-			for (int j = 0; j < 5; j++) {
-				cout << borrow2d[i][j] << " ";
-			}
-			cout << endl;
-		}
 		ifstream equipment;
 		equipment.open("C:\\Users\\s2012\\OneDrive\\Desktop\\name.txt", ofstream::out | ofstream::trunc);
 		equipment.close();
@@ -445,6 +464,154 @@ void FileHandler::writeLoanRecord(string* arr, int& borrowCount, int noOfBorrow,
 		}
 		delete[] borrow2d;
 		borrow2d = 0;
+	}
+}
+
+void FileHandler::updateLoanRecord(string rightUser) {
+	ifstream loanRecord("C:\\Users\\s2012\\OneDrive\\Desktop\\People.txt");
+	string info;
+	string update;
+	int recordCount = 0;
+	string** record2d = 0;
+	record2d = new string*[100];
+	bool flag = true;
+	if (!loanRecord) {
+		cout << "There are no any records." << endl;
+	}
+	else {
+		cout << "Your loan record: " << endl;
+		cout << "loan date\titemID\titem name\t\treturn date" << endl;
+		while (!loanRecord.eof()) {
+			getline(loanRecord, info, '|');
+			record2d[recordCount] = new string[6];
+			for (int j = 0; j < 6; j++) {
+				if (j == 0)
+					record2d[recordCount][j] = info;
+				else if (j >= 1 && j <= 4) {
+					getline(loanRecord, info, '|');
+					record2d[recordCount][j] = info;
+				}
+				else if (j > 4) {
+					getline(loanRecord, info);
+					record2d[recordCount][j] = info;
+				}
+			}
+			getline(loanRecord, info);
+			recordCount++;
+		}
+		for (int i = 0; i < recordCount; i++) {
+			if (record2d[i][0] == rightUser && record2d[i][5] == "out") {
+				for (int j = 1; j < 5; j++) {
+					if (j < 3)
+						cout << record2d[i][j] << "\t";
+					else if (j == 3)
+						cout << record2d[i][j] << "\t\t";
+					else if (j > 3)
+						cout << record2d[i][j] << endl;
+				}
+			}
+		}
+		cout << endl;
+		cout << "Which item you would like to return? ";
+		cin >> update;
+		for (int i = 0; i < recordCount; i++) {
+			if (record2d[i][0] == rightUser && record2d[i][5] == "out" && update == record2d[i][2]) {
+				record2d[i][5] = "returned";
+				flag = true;
+				break;
+			}
+			else
+				flag = false;
+		}
+		if (flag == true) {
+			loanRecord.open("C:\\Users\\s2012\\OneDrive\\Desktop\\People.txt", ofstream::out | ofstream::trunc);
+			loanRecord.close();
+			ofstream newLoanRecord("C:\\Users\\s2012\\OneDrive\\Desktop\\People.txt");
+			if (newLoanRecord.is_open())
+			{
+				for (int i = 0; i < recordCount; i++) {
+					if (i < recordCount - 1) {
+						for (int j = 0; j < 6; j++) {
+							if (j != 5)
+								newLoanRecord << record2d[i][j] << "|";
+							else
+								newLoanRecord << record2d[i][j];
+						}
+						newLoanRecord << "\n\n";
+					}
+					else if (i == recordCount - 1) {
+						for (int j = 0; j < 6; j++) {
+							if (j != 5)
+								newLoanRecord << record2d[i][j] << "|";
+							else
+								newLoanRecord << record2d[i][j];
+						}
+					}
+				}
+				newLoanRecord.close();
+			}
+			Tent ten;
+			Stove sto;
+			Lantern lan;
+			for (int i = 0; i < ten.getTentCount(); i++) {
+				if (update == ten.getTent()[i][0]) {
+					ten.getTent()[i][6] = "in";
+				}
+			}
+			for (int i = 0; i < sto.getStoveCount(); i++) {
+				if (update == sto.getStove()[i][0]) {
+					sto.getStove()[i][6] = "in";
+				}
+			}
+			for (int i = 0; i < lan.getLanternCount(); i++) {
+				if (update == lan.getLantern()[i][0]) {
+					lan.getLantern()[i][6] = "in";
+				}
+			}
+			ifstream equipment;
+			equipment.open("C:\\Users\\s2012\\OneDrive\\Desktop\\name.txt", ofstream::out | ofstream::trunc);
+			equipment.close();
+			ofstream newEquipment("C:\\Users\\s2012\\OneDrive\\Desktop\\name.txt");
+			if (newEquipment.is_open())
+			{
+				for (int i = 0; i < ten.getTentCount(); i++) {
+					for (int j = 0; j < 12; j++) {
+						if (j != 11)
+							newEquipment << ten.getTent()[i][j] << "|";
+						else
+							newEquipment << ten.getTent()[i][j];
+					}
+					newEquipment << "\n\n";
+				}
+				for (int i = 0; i < sto.getStoveCount(); i++) {
+					for (int j = 0; j < 9; j++) {
+						if (j != 8)
+							newEquipment << sto.getStove()[i][j] << "|";
+						else
+							newEquipment << sto.getStove()[i][j];
+					}
+					newEquipment << "\n\n";
+				}
+				for (int i = 0; i < lan.getLanternCount(); i++) {
+					for (int j = 0; j < 10; j++) {
+						if (j != 9)
+							newEquipment << lan.getLantern()[i][j] << "|";
+						else
+							newEquipment << lan.getLantern()[i][j];
+					}
+					newEquipment << "\n\n";
+				}
+				newEquipment.close();
+			}
+			cout << "success!" << endl;
+		}
+		else
+			cout << "No this item!" << endl;
+		for (int i = 0; i < recordCount; i++) {
+			delete[] record2d[i];
+		}
+		delete[] record2d;
+		record2d = 0;
 	}
 }
 
